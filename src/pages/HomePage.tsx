@@ -13,7 +13,58 @@ import {
   ShieldCheck,
   BookOpen,
   CheckCircle2,
+  Activity,
+  HeartPulse,
+  Scale,
+  Pill,
+  Brain,
+  Sparkles,
 } from "lucide-react";
+
+const conditionsWithEvidence = [
+  {
+    icon: Activity,
+    title: "Inflammatory Bowel Disease",
+    subtitle: "IBD / Crohn's / Ulcerative Colitis",
+    evidence: "Strong Emerging",
+    description: "Research shows >90% diagnostic accuracy using microbial biomarkers. Monitoring applications under active investigation.",
+  },
+  {
+    icon: Brain,
+    title: "Irritable Bowel Syndrome",
+    subtitle: "IBS & Functional GI Disorders",
+    evidence: "Emerging",
+    description: "Studies correlate specific microbial patterns with IBS subtypes. Dietary interventions show promise for symptom management.",
+  },
+  {
+    icon: Scale,
+    title: "Metabolic Health",
+    subtitle: "Obesity & Type 2 Diabetes",
+    evidence: "Emerging",
+    description: "Consistent links between reduced diversity and metabolic conditions. Lifestyle interventions supported by microbiome insights.",
+  },
+  {
+    icon: Pill,
+    title: "Post-Antibiotic Recovery",
+    subtitle: "Gut Restoration",
+    evidence: "Established",
+    description: "FDA-approved microbiota therapies for recurrent C. difficile. Evidence supports monitoring recovery after antibiotic courses.",
+  },
+  {
+    icon: HeartPulse,
+    title: "Digestive Wellness",
+    subtitle: "Bloating, Discomfort & Irregularity",
+    evidence: "Supportive",
+    description: "Functional markers and diversity analysis can guide dietary optimisation for common digestive complaints.",
+  },
+  {
+    icon: Sparkles,
+    title: "Health Optimisation",
+    subtitle: "Preventive & Longevity Focus",
+    evidence: "Exploratory",
+    description: "Higher diversity correlates with better health outcomes. Personalised dietary guidance based on your unique microbiome.",
+  },
+];
 
 const approachItems = [
   {
@@ -95,6 +146,54 @@ export default function HomePage() {
           {/* Evidence Disclosure */}
           <div className="mx-auto mt-12 max-w-3xl">
             <EvidenceDisclosure />
+          </div>
+        </div>
+      </section>
+
+      {/* Conditions With Evidence */}
+      <section className="py-16 sm:py-24">
+        <div className="container">
+          <SectionHeader
+            badge="Research Areas"
+            title="Conditions Where Microbiome Science Shows Promise"
+            description="Current research reveals meaningful connections between gut microbiome and these health areas. Evidence levels vary—we help you understand what the science actually shows."
+          />
+
+          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            {conditionsWithEvidence.map((condition) => (
+              <Card key={condition.title} className="group relative overflow-hidden border-border/50 transition-all hover:border-primary/30 hover:shadow-lg">
+                <CardContent className="pt-6">
+                  <div className="flex items-start justify-between gap-4">
+                    <div className="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-lg bg-primary/10">
+                      <condition.icon className="h-6 w-6 text-primary" />
+                    </div>
+                    <span className={`rounded-full px-2.5 py-1 text-xs font-medium ${
+                      condition.evidence === "Strong Emerging" || condition.evidence === "Established"
+                        ? "bg-primary/15 text-primary"
+                        : condition.evidence === "Emerging"
+                        ? "bg-accent text-accent-foreground"
+                        : "bg-muted text-muted-foreground"
+                    }`}>
+                      {condition.evidence}
+                    </span>
+                  </div>
+                  <h3 className="mt-4 font-semibold text-foreground">{condition.title}</h3>
+                  <p className="text-sm text-primary/80">{condition.subtitle}</p>
+                  <p className="mt-3 text-sm text-muted-foreground leading-relaxed">
+                    {condition.description}
+                  </p>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+
+          <div className="mt-10 text-center">
+            <Button asChild variant="outline" size="lg">
+              <Link to="/science">
+                Explore the Full Evidence Base
+                <ArrowRight className="ml-2 h-4 w-4" />
+              </Link>
+            </Button>
           </div>
         </div>
       </section>
