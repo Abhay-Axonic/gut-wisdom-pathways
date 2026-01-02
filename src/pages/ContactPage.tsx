@@ -8,17 +8,17 @@ const contactInfo = [
   {
     icon: MapPin,
     title: "Location",
-    details: ["123 Medical Center Drive", "London, UK"],
+    details: ["The Microbiome Clinic", "Gastrosurgery UK, London"],
   },
   {
     icon: Phone,
     title: "Phone",
-    details: ["+44 (0) 123 456 7890"],
+    details: ["020 7099 9333"],
   },
   {
     icon: Mail,
     title: "Email",
-    details: ["info@microbiomeclinic.com", "providers@microbiomeclinic.com"],
+    details: ["gastrosurgery@gmail.com"],
   },
   {
     icon: Clock,
@@ -146,7 +146,7 @@ export default function ContactPage() {
               <div className="text-center p-8">
                 <MapPin className="mx-auto h-12 w-12 text-muted-foreground/50" />
                 <p className="mt-4 text-muted-foreground">
-                  Interactive map placeholder — 123 Medical Center Drive, London
+                  Interactive map placeholder — The Microbiome Clinic, Gastrosurgery UK, London
                 </p>
               </div>
             </div>
