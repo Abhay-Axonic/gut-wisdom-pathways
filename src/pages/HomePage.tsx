@@ -60,19 +60,24 @@ export default function HomePage() {
   return (
     <Layout>
       {/* Hero Section */}
-      <section className="hero-gradient py-16 sm:py-24">
+      <section className="hero-gradient py-20 sm:py-32">
         <div className="container">
-          <div className="mx-auto max-w-3xl text-center">
-            <span className="mb-4 inline-block rounded-full bg-accent px-4 py-1.5 text-sm font-medium text-accent-foreground">
-              Led by Specialist Clinicians
-            </span>
-            <h1 className="text-4xl font-bold tracking-tight text-foreground sm:text-5xl lg:text-6xl">
-              Evidence-Based Microbiome Analysis for Health Optimisation
+          <div className="mx-auto max-w-4xl text-center">
+            <h1 className="text-5xl font-bold tracking-tight text-foreground sm:text-6xl lg:text-7xl">
+              <span className="text-primary">Microbiome</span> Clinic
             </h1>
-            <p className="mt-6 text-lg text-muted-foreground sm:text-xl">
-              Led by Prof. Abhay Chopada (Consultant GI Surgeon) & Dr. Rashmi Kulkarni 
-              (Microbiome Specialist). Research-informed gut health analysis integrated 
-              with standard medical care.
+            <p className="mt-4 text-xl text-muted-foreground sm:text-2xl font-medium">
+              Evidence-Based Gut Health Analysis
+            </p>
+            <div className="mt-8 flex items-center justify-center gap-2 text-muted-foreground">
+              <Stethoscope className="h-5 w-5 text-primary" />
+              <span className="text-base sm:text-lg">
+                Led by Prof. Abhay Chopada (Consultant GI Surgeon) & Dr. Rashmi Kulkarni (Microbiome Specialist)
+              </span>
+            </div>
+            <p className="mt-6 text-base text-muted-foreground sm:text-lg max-w-2xl mx-auto">
+              Research-informed microbiome analysis integrated with standard medical care. 
+              Clinician-supervised testing with transparent, evidence-based guidance.
             </p>
             <div className="mt-8 flex flex-col gap-4 sm:flex-row sm:justify-center">
               <Button asChild size="lg">
