@@ -19,6 +19,7 @@ import {
   Pill,
   Brain,
   Sparkles,
+  Ribbon,
 } from "lucide-react";
 
 const conditionsWithEvidence = [
@@ -44,6 +45,13 @@ const conditionsWithEvidence = [
     description: "Consistent links between reduced diversity and metabolic conditions. Lifestyle interventions supported by microbiome insights.",
   },
   {
+    icon: Ribbon,
+    title: "Post-Chemotherapy Recovery",
+    subtitle: "Cancer Treatment Support",
+    evidence: "Emerging",
+    description: "Chemotherapy significantly disrupts gut microbiota. Research supports microbiome monitoring to guide recovery and reduce treatment side effects.",
+  },
+  {
     icon: Pill,
     title: "Post-Antibiotic Recovery",
     subtitle: "Gut Restoration",
@@ -56,13 +64,6 @@ const conditionsWithEvidence = [
     subtitle: "Bloating, Discomfort & Irregularity",
     evidence: "Supportive",
     description: "Functional markers and diversity analysis can guide dietary optimisation for common digestive complaints.",
-  },
-  {
-    icon: Sparkles,
-    title: "Health Optimisation",
-    subtitle: "Preventive & Longevity Focus",
-    evidence: "Exploratory",
-    description: "Higher diversity correlates with better health outcomes. Personalised dietary guidance based on your unique microbiome.",
   },
 ];
 
