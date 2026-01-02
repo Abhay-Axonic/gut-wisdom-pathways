@@ -83,17 +83,17 @@ export function Footer() {
               <li className="flex items-start gap-2">
                 <MapPin className="mt-0.5 h-4 w-4 text-primary" />
                 <span className="text-muted-foreground">
-                  123 Medical Center Drive<br />
-                  London, UK
+                  The Microbiome Clinic<br />
+                  Gastrosurgery UK, London
                 </span>
               </li>
               <li className="flex items-center gap-2">
                 <Phone className="h-4 w-4 text-primary" />
-                <span className="text-muted-foreground">+44 (0) 123 456 7890</span>
+                <a href="tel:02070999333" className="text-muted-foreground hover:text-primary transition-colors">020 7099 9333</a>
               </li>
               <li className="flex items-center gap-2">
                 <Mail className="h-4 w-4 text-primary" />
-                <span className="text-muted-foreground">info@microbiomeclinic.com</span>
+                <a href="mailto:gastrosurgery@gmail.com" className="text-muted-foreground hover:text-primary transition-colors">gastrosurgery@gmail.com</a>
               </li>
             </ul>
           </div>
