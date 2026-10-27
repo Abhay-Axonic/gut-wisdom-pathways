@@ -41,6 +41,24 @@ Deno.serve(async (req) => {
   }
 
   const supabase = createClient(Deno.env.get("SUPABASE_URL")!, Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")!);
+
+  // Duplicate protection: the same person resubmitting within 15 minutes gets their existing
+  // reference back instead of creating a second record.
+  const since = new Date(Date.now() - 15 * 60 * 1000).toISOString();
+  let dupQuery = supabase
+    .from("consultation_requests")
+    .select("id")
+    .eq("full_name", d.fullName)
+    .gte("created_at", since)
+    .limit(1);
+  dupQuery = d.email ? dupQuery.eq("email", d.email) : dupQuery.eq("phone", d.phone);
+  const { data: dup, error: dupError } = await dupQuery.maybeSingle();
+  if (dupError) {
+    console.error("duplicate_check_failed", dupError.code);
+    return json({ ok: false, error: "storage_failed" }, 500);
+  }
+  if (dup) return json({ ok: true, duplicate: true, reference: dup.id.slice(0, 8).toUpperCase() });
+
   const { data, error } = await supabase
     .from("consultation_requests")
     .insert({
