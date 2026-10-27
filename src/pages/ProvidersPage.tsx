@@ -7,7 +7,7 @@ import { site } from "@/config/site";
 export default function ProvidersPage() {
   return (
     <Layout>
-      <Seo title="For healthcare professionals" description={`Information for GPs and specialists considering referring a patient to ${site.brandName}, London.`} path="/providers" breadcrumbs={[{ name: "For healthcare professionals", path: "/providers" }]} />
+      <Seo path="/providers" breadcrumbs={[{ name: "For healthcare professionals", path: "/providers" }]} />
       <PageHero eyebrow="For healthcare professionals" title="Working with GPs and specialists">
         <p>We aim to complement, not replace, the care your patient already receives.</p>
       </PageHero>

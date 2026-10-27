@@ -16,8 +16,6 @@ export default function ServicesPage() {
   return (
     <Layout>
       <Seo
-        title="Services — specialist digestive health consultation"
-        description="What happens during a specialist-led gut health consultation at our London clinic: assessment, an honest view of testing, and a clear plan."
         path="/services"
         breadcrumbs={[{ name: "Services", path: "/services" }]}
       />

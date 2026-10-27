@@ -14,7 +14,7 @@ const contactLine = (
 export function PrivacyPage() {
   return (
     <Layout>
-      <Seo title="Privacy information" description={`How ${site.brandName} uses the information you send through this website.`} path="/privacy" breadcrumbs={[{ name: "Privacy", path: "/privacy" }]} />
+      <Seo path="/privacy" breadcrumbs={[{ name: "Privacy", path: "/privacy" }]} />
       <PageHero eyebrow="Privacy" title="Privacy information" />
       <article className="container prose-clinic max-w-3xl py-12">
         <p>Our full privacy notice is being finalised. This page explains how the website itself handles your information today.</p>
@@ -32,7 +32,7 @@ export function PrivacyPage() {
 export function TermsPage() {
   return (
     <Layout>
-      <Seo title="Terms and cancellations" description={`Appointment terms and cancellation arrangements at ${site.brandName}.`} path="/terms" breadcrumbs={[{ name: "Terms", path: "/terms" }]} />
+      <Seo path="/terms" breadcrumbs={[{ name: "Terms", path: "/terms" }]} />
       <PageHero eyebrow="Terms" title="Terms and cancellations" />
       <article className="container prose-clinic max-w-3xl py-12">
         <p>Our full appointment terms and cancellation policy are being finalised. Before any appointment is confirmed, we will tell you the fee, what it includes and the cancellation terms that apply, so you can decide with full information.</p>
@@ -47,7 +47,7 @@ export function TermsPage() {
 export function AccessibilityPage() {
   return (
     <Layout>
-      <Seo title="Accessibility" description={`Accessibility of the ${site.brandName} website and how to request information in another format.`} path="/accessibility" breadcrumbs={[{ name: "Accessibility", path: "/accessibility" }]} />
+      <Seo path="/accessibility" breadcrumbs={[{ name: "Accessibility", path: "/accessibility" }]} />
       <PageHero eyebrow="Accessibility" title="Accessibility" />
       <article className="container prose-clinic max-w-3xl py-12">
         <p>We want everyone to be able to use this website. It has been designed to:</p>

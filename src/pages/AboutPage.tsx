@@ -15,8 +15,6 @@ export default function AboutPage() {
   return (
     <Layout>
       <Seo
-        title="About the clinic"
-        description={`About ${site.brandName}: a specialist-led London clinic offering careful, evidence-based guidance on digestive health and the gut microbiome.`}
         path="/about"
         breadcrumbs={[{ name: "About", path: "/about" }]}
       />

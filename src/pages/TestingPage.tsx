@@ -8,8 +8,6 @@ export default function TestingPage() {
   return (
     <Layout>
       <Seo
-        title="Microbiome testing — benefits and limitations"
-        description="What a stool microbiome test measures, how methods differ, and what it can and cannot tell you. An honest guide from a London specialist clinic."
         path="/testing"
         breadcrumbs={[{ name: "Microbiome testing", path: "/testing" }]}
       />

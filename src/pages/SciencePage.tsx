@@ -15,8 +15,6 @@ export default function SciencePage() {
   return (
     <Layout>
       <Seo
-        title="The science and its limitations"
-        description="A balanced summary of gut microbiome research: where evidence is emerging, where it is established, and why routine testing has limited clinical use."
         path="/science"
         breadcrumbs={[{ name: "The science", path: "/science" }]}
       />
