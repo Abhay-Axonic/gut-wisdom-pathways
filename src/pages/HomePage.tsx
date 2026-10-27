@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { Layout } from "@/components/layout/Layout";
 import { Seo } from "@/components/shared/Seo";
-import { MicrobeField } from "@/components/shared/Illustrations";
+import { MicrobeField, CurveDivider, Sprig, BrassRule } from "@/components/shared/Illustrations";
 import { CtaBand } from "@/components/shared/PageHero";
 import { site, ctaHref, ctaLabel } from "@/config/site";
 import { clinicians } from "@/config/clinicians";
@@ -65,17 +65,17 @@ export default function HomePage() {
 
       {/* Hero */}
       <section className="relative overflow-hidden">
-        <div className="container grid items-center gap-12 py-16 sm:py-24 lg:grid-cols-[1.15fr_0.85fr] lg:py-28">
+        <div className="container grid items-center gap-10 py-12 sm:py-16 lg:grid-cols-[1.1fr_0.9fr] lg:gap-16 lg:py-20">
           <div className="fade-up">
             <p className="eyebrow">{site.brandName} · London</p>
-            <h1 className="mt-5 text-[2.6rem]">
+            <h1 className="mt-4 max-w-[15ch]">
               Understand your gut health with <em className="text-accent">specialist-led</em> care.
             </h1>
-            <p className="mt-6 max-w-xl text-lg text-muted-foreground sm:text-xl">
+            <p className="lede measure mt-5">
               Consultant-led consultations for people with digestive symptoms or questions about the microbiome. We
               assess you first, explain your options plainly, and only discuss testing where it could genuinely help.
             </p>
-            <div className="mt-9 flex flex-col gap-3 sm:flex-row">
+            <div className="mt-8 flex flex-col gap-3 sm:flex-row">
               <Button asChild size="lg" onClick={() => track("cta_click", "home_hero")}>
                 <Link to={ctaHref}>{ctaLabel}</Link>
               </Button>
@@ -84,7 +84,7 @@ export default function HomePage() {
               </Button>
             </div>
           </div>
-          <MicrobeField className="mx-auto w-full max-w-md fade-up" />
+          <MicrobeField animate className="fade-up fade-up-delay mx-auto hidden w-full max-w-sm sm:block lg:max-w-md" />
         </div>
       </section>
 
@@ -126,20 +126,29 @@ export default function HomePage() {
       </section>
 
       {/* Steps */}
-      <section id="how-it-works" className="scroll-mt-24 bg-forest text-ivory">
-        <div className="container py-20 sm:py-28">
-          <p className="text-sm font-semibold uppercase tracking-[0.1em] text-brass-light">How it works</p>
-          <h2 className="mt-4 max-w-2xl text-ivory">Consultation first. Testing only if it is appropriate.</h2>
-          <ol className="mt-14 grid gap-10 md:grid-cols-2 lg:grid-cols-4">
-            {steps.map((s, i) => (
-              <li key={s.t} className="border-t border-ivory/25 pt-6">
-                <span className="font-heading text-4xl text-brass-light">0{i + 1}</span>
-                <h3 className="mt-3 text-ivory">{s.t}</h3>
-                <p className="mt-2 text-ivory/75">{s.d}</p>
-              </li>
-            ))}
-          </ol>
+      <section id="how-it-works" className="scroll-mt-24">
+        <CurveDivider className="fill-forest" />
+        <div className="bg-forest text-ivory">
+          <div className="container relative py-16 sm:py-20">
+            <Sprig className="pointer-events-none absolute right-6 top-10 hidden h-28 w-20 opacity-70 lg:block" />
+            <p className="text-sm font-semibold uppercase tracking-[0.1em] text-brass-light">How it works</p>
+            <h2 className="mt-4 max-w-2xl text-ivory">Consultation first. Testing only if it is appropriate.</h2>
+            <ol className="mt-12 grid gap-10 md:grid-cols-2 lg:grid-cols-4">
+              {steps.map((s, i) => (
+                <li key={s.t} className="border-t border-ivory/25 pt-6">
+                  <span className="font-heading text-4xl text-brass-light">0{i + 1}</span>
+                  <h3 className="mt-3 text-ivory">{s.t}</h3>
+                  <p className="mt-2 text-ivory/85">{s.d}</p>
+                </li>
+              ))}
+            </ol>
+            <p className="mt-12 text-ivory/85">
+              Read more about <Link to="/services" className="text-ivory underline underline-offset-4">what a consultation covers</Link> and{" "}
+              <Link to="/fees" className="text-ivory underline underline-offset-4">how fees are confirmed</Link>.
+            </p>
+          </div>
         </div>
+        <CurveDivider flip className="fill-forest" />
       </section>
 
       {/* Options */}
