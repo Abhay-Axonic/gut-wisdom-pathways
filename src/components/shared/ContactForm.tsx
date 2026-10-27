@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -28,6 +28,8 @@ export function ContactForm() {
   const [reference, setReference] = useState("");
   const startedAt = useRef(Date.now());
   const inFlight = useRef(false);
+  const errorRef = useRef<HTMLDivElement>(null);
+  useEffect(() => { if (status === "error") errorRef.current?.focus(); }, [status]);
 
   const set = (k: keyof typeof initial, v: string | boolean) => {
     setForm((f) => ({ ...f, [k]: v }));
@@ -190,7 +192,7 @@ export function ContactForm() {
       </label>
 
       {status === "error" && (
-        <div role="alert" className="flex gap-3 rounded-lg border border-destructive/40 bg-destructive/5 p-4 text-sm">
+        <div ref={errorRef} tabIndex={-1} id="form-error" role="alert" className="flex gap-3 rounded-lg border border-destructive/40 bg-destructive/5 p-4 text-sm">
           <AlertCircle className="h-5 w-5 shrink-0 text-destructive" aria-hidden />
           <p>
             Sorry, we could not send your request. Nothing was submitted. Please try again, or call{" "}
