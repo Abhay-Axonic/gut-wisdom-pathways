@@ -1,114 +1,35 @@
 import { Link } from "react-router-dom";
-import { Button } from "@/components/ui/button";
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { Layout } from "@/components/layout/Layout";
-import { SectionHeader } from "@/components/shared/SectionHeader";
-import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from "@/components/ui/accordion";
-import { ArrowRight } from "lucide-react";
+import { Seo } from "@/components/shared/Seo";
+import { PageHero, CtaBand } from "@/components/shared/PageHero";
+import { site } from "@/config/site";
 
-const faqCategories = [
+const groups = [
   {
-    title: "General Questions",
-    faqs: [
-      {
-        question: "Will this diagnose my condition?",
-        answer:
-          "No. Microbiome testing is not diagnostic. It provides complementary information to support your existing medical care. We cannot diagnose diseases based on microbiome analysis, and results should never replace proper medical investigation by your doctor.",
-      },
-      {
-        question: "Can I use this instead of seeing my doctor?",
-        answer:
-          "Absolutely not. Our service requires ongoing medical supervision and works alongside conventional healthcare. Microbiome analysis is meant to complement, not replace, standard medical care. We require that all patients maintain their relationship with their primary care provider or specialist.",
-      },
-      {
-        question: "How accurate are the tests?",
-        answer:
-          "The laboratory analysis is technically accurate—we use validated metagenomic sequencing in CLIA-certified laboratories. However, clinical interpretation has limitations. Current evidence doesn't support many health claims made by commercial testing companies, and what constitutes a 'normal' microbiome is still being defined.",
-      },
-      {
-        question: "What conditions can microbiome testing help with?",
-        answer:
-          "Evidence varies significantly by condition. The strongest evidence exists for recurrent C. difficile infection (where FMT is FDA-approved). Emerging evidence exists for IBD monitoring, and observational data links microbiome changes to metabolic conditions. However, for most conditions including IBS, expert consensus is that testing is not currently helpful outside research settings.",
-      },
+    t: "Consultations",
+    items: [
+      { q: "Do I need a referral?", a: "No. You can request a consultation yourself." },
+      { q: "What happens at the first appointment?", a: "A specialist reviews your symptoms, history, medicines and previous investigations, then explains their view and the sensible next steps." },
+      { q: "Where are appointments held?", a: `Appointments are based in ${site.location.city}. We confirm the arrangements when we contact you.` },
+      { q: "Will you share information with my GP?", a: "Only with your permission. Keeping your GP informed usually helps your care stay joined up." },
     ],
   },
   {
-    title: "About Our Practice",
-    faqs: [
-      {
-        question: "Will you recommend supplements?",
-        answer:
-          "We provide evidence-based dietary and lifestyle recommendations only. We do not sell supplements, probiotics, or any products—this avoids conflicts of interest that affect many commercial microbiome testing companies. If we believe a specific intervention may help, we'll provide the evidence and you can discuss options with your doctor.",
-      },
-      {
-        question: "Is this regulated?",
-        answer:
-          "Currently, most microbiome testing services are not specifically regulated as medical devices in the UK or USA. We voluntarily adhere to the highest laboratory standards (CLIA certification) and ethical clinical practice. All consultations are provided by registered healthcare professionals.",
-      },
-      {
-        question: "Who provides the consultations?",
-        answer:
-          "Consultations are provided by Prof. Abhay Chopada (Consultant GI Surgeon, FRCS) and Dr. Rashmi Kulkarni (Microbiome Specialist). Both are registered healthcare professionals with relevant expertise.",
-      },
-      {
-        question: "How do you handle my data?",
-        answer:
-          "We are HIPAA and GDPR compliant. Your data is handled securely, never shared without consent, and you maintain control over your information. Samples are destroyed after analysis unless you specifically consent to research use.",
-      },
+    t: "Testing",
+    items: [
+      { q: "Can I buy a microbiome test from you?", a: site.services.testingAvailable ? "Testing is only arranged after a consultation, where it is appropriate and agreed with you." : "Not at present. We focus on assessment and helping you decide whether a test is worthwhile." },
+      { q: "Can a microbiome test diagnose my condition?", a: "No. Microbiome tests cannot diagnose IBS, inflammatory bowel disease or cancer. Standard medical tests are needed for diagnosis." },
+      { q: "Does sequencing measure inflammation?", a: "No. Sequencing describes microbes. Inflammation markers such as faecal calprotectin are separate tests." },
     ],
   },
   {
-    title: "The Testing Process",
-    faqs: [
-      {
-        question: "What does the testing process involve?",
-        answer:
-          "The process includes: 1) Initial 60-minute consultation to assess suitability and obtain consent, 2) Home sample collection with our provided kit, 3) Laboratory analysis using metagenomic sequencing, and 4) Results consultation with personalised recommendations. We also include a 3-month follow-up appointment.",
-      },
-      {
-        question: "How long do results take?",
-        answer:
-          "Results are typically available within 2-3 weeks after your sample reaches the laboratory. We'll schedule your results consultation as soon as your report is ready.",
-      },
-      {
-        question: "What if my results are 'abnormal'?",
-        answer:
-          "There is no universally defined 'normal' microbiome—individual variation is high. We interpret your results in the context of your health history, symptoms, and goals. Any concerns are discussed with clear evidence levels, and we always recommend discussing significant findings with your primary care provider.",
-      },
-      {
-        question: "Can I get testing without the consultations?",
-        answer:
-          "No. We believe responsible microbiome analysis requires proper clinical context and professional interpretation. The consultations are mandatory components of our service to ensure you receive appropriate care and understand the limitations of testing.",
-      },
-    ],
-  },
-  {
-    title: "Pricing & Practical",
-    faqs: [
-      {
-        question: "How much does it cost?",
-        answer:
-          "Please contact us for current pricing. Our comprehensive package includes initial consultation, complete testing, detailed report, results consultation, and 3-month follow-up. We accept direct payment and provide receipts for insurance submission where applicable.",
-      },
-      {
-        question: "Do you accept insurance?",
-        answer:
-          "We provide receipts that you can submit to your insurance provider. Coverage varies by policy. Our services are HSA/FSA eligible in many cases. We recommend checking with your insurance provider before booking.",
-      },
-      {
-        question: "Do you see international patients?",
-        answer:
-          "Yes. Virtual consultations are available, and sample collection can be arranged worldwide. We accept international payments and can provide multi-language support for consultations.",
-      },
-      {
-        question: "What is your cancellation policy?",
-        answer:
-          "We request 48 hours notice for cancellation or rescheduling of consultations. Sample kit costs are non-refundable once shipped, but can be applied to a rescheduled appointment.",
-      },
+    t: "Fees and practicalities",
+    items: [
+      { q: "How much does a consultation cost?", a: "Please request our current fees. We confirm the fee before anything is booked." },
+      { q: "Will my insurer pay?", a: "We cannot guarantee insurance cover. Please check with your insurer before booking." },
+      { q: "Do you sell supplements?", a: "No. We do not sell supplements or receive commission on products." },
+      { q: "What if my symptoms are urgent?", a: "Contact your GP or NHS 111. In an emergency, call 999." },
     ],
   },
 ];
@@ -116,75 +37,25 @@ const faqCategories = [
 export default function FAQPage() {
   return (
     <Layout>
-      {/* Hero Section */}
-      <section className="hero-gradient py-16 sm:py-24">
-        <div className="container">
-          <div className="mx-auto max-w-3xl text-center">
-            <span className="mb-4 inline-block rounded-full bg-accent px-4 py-1.5 text-sm font-medium text-accent-foreground">
-              FAQ
-            </span>
-            <h1 className="text-4xl font-bold tracking-tight text-foreground sm:text-5xl">
-              Frequently Asked Questions
-            </h1>
-            <p className="mt-6 text-lg text-muted-foreground">
-              Honest answers to common questions about microbiome testing, 
-              our practice, and what you can expect.
-            </p>
+      <Seo title="Frequently asked questions" description="Answers about consultations, microbiome testing, fees and practical arrangements at our London gut health clinic." path="/faq" breadcrumbs={[{ name: "FAQs", path: "/faq" }]} />
+      <PageHero eyebrow="FAQs" title="Frequently asked questions" />
+      <section className="container max-w-4xl py-16">
+        {groups.map((g) => (
+          <div key={g.t} className="mb-14">
+            <h2 className="text-2xl sm:text-3xl">{g.t}</h2>
+            <Accordion type="multiple" className="mt-4">
+              {g.items.map((f) => (
+                <AccordionItem key={f.q} value={f.q}>
+                  <AccordionTrigger className="text-left text-lg">{f.q}</AccordionTrigger>
+                  <AccordionContent className="text-base text-muted-foreground">{f.a}</AccordionContent>
+                </AccordionItem>
+              ))}
+            </Accordion>
           </div>
-        </div>
+        ))}
+        <p className="text-muted-foreground">Still have a question? <Link to="/contact" className="text-primary underline">Contact us</Link>.</p>
       </section>
-
-      {/* FAQ Sections */}
-      <section className="py-16 sm:py-24">
-        <div className="container">
-          <div className="mx-auto max-w-3xl">
-            {faqCategories.map((category, categoryIndex) => (
-              <div key={category.title} className={categoryIndex > 0 ? "mt-12" : ""}>
-                <h2 className="mb-6 text-2xl font-bold text-foreground">
-                  {category.title}
-                </h2>
-                <Accordion type="single" collapsible className="w-full">
-                  {category.faqs.map((faq, index) => (
-                    <AccordionItem
-                      key={index}
-                      value={`${categoryIndex}-${index}`}
-                      className="border-border"
-                    >
-                      <AccordionTrigger className="text-left font-medium text-foreground hover:text-primary">
-                        {faq.question}
-                      </AccordionTrigger>
-                      <AccordionContent className="text-muted-foreground">
-                        {faq.answer}
-                      </AccordionContent>
-                    </AccordionItem>
-                  ))}
-                </Accordion>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* CTA */}
-      <section className="section-alt py-16 sm:py-24">
-        <div className="container">
-          <div className="mx-auto max-w-3xl text-center">
-            <h2 className="text-2xl font-bold text-foreground sm:text-3xl">
-              Still Have Questions?
-            </h2>
-            <p className="mt-4 text-muted-foreground">
-              We're happy to discuss any aspect of our service or the evidence 
-              base in more detail.
-            </p>
-            <Button asChild size="lg" className="mt-8">
-              <Link to="/contact">
-                Contact Us
-                <ArrowRight className="ml-2 h-4 w-4" />
-              </Link>
-            </Button>
-          </div>
-        </div>
-      </section>
+      <CtaBand location="faq" />
     </Layout>
   );
 }
