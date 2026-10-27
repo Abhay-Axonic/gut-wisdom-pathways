@@ -2,99 +2,54 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Microbiome Clinic Design System - Clinical & Professional */
+/* Microbiome Clinic — ivory, forest green, muted teal, restrained brass */
 
 @layer base {
   :root {
-    /* Clinical teal/blue-green palette */
-    --background: 0 0% 100%;
-    --foreground: 210 25% 15%;
+    --background: 42 38% 96%;
+    --foreground: 160 28% 11%;
 
-    --card: 0 0% 100%;
-    --card-foreground: 210 25% 15%;
+    --card: 40 45% 98%;
+    --card-foreground: 160 28% 11%;
+    --popover: 40 45% 98%;
+    --popover-foreground: 160 28% 11%;
 
-    --popover: 0 0% 100%;
-    --popover-foreground: 210 25% 15%;
+    --primary: 158 42% 20%;
+    --primary-foreground: 42 38% 96%;
 
-    /* Primary: Medical Teal */
-    --primary: 174 58% 35%;
-    --primary-foreground: 0 0% 100%;
+    --secondary: 174 22% 88%;
+    --secondary-foreground: 170 35% 16%;
 
-    /* Secondary: Slate Gray */
-    --secondary: 210 20% 96%;
-    --secondary-foreground: 210 25% 25%;
+    --muted: 40 26% 91%;
+    --muted-foreground: 160 12% 32%;
 
-    --muted: 210 20% 96%;
-    --muted-foreground: 210 15% 45%;
+    --accent: 174 26% 40%;
+    --accent-foreground: 42 38% 97%;
 
-    /* Accent: Lighter Teal */
-    --accent: 174 45% 92%;
-    --accent-foreground: 174 58% 25%;
-
-    --destructive: 0 84% 60%;
+    --destructive: 2 62% 42%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 210 20% 90%;
-    --input: 210 20% 90%;
-    --ring: 174 58% 35%;
+    --border: 40 18% 82%;
+    --input: 40 18% 76%;
+    --ring: 174 40% 32%;
 
-    --radius: 0.5rem;
+    --radius: 0.75rem;
 
-    /* Custom tokens */
-    --clinical-gradient: linear-gradient(135deg, hsl(174 58% 35%) 0%, hsl(180 45% 45%) 100%);
-    --hero-gradient: linear-gradient(180deg, hsl(174 45% 97%) 0%, hsl(0 0% 100%) 100%);
-    --section-alt: 174 30% 98%;
-    --trust-badge: 45 85% 55%;
+    --brass: 36 46% 42%;
+    --forest: 158 42% 15%;
+    --ivory: 42 38% 96%;
+    --section-alt: 40 30% 92%;
 
-    --sidebar-background: 0 0% 98%;
-    --sidebar-foreground: 210 25% 25%;
-    --sidebar-primary: 174 58% 35%;
-    --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 174 45% 95%;
-    --sidebar-accent-foreground: 174 58% 25%;
-    --sidebar-border: 210 20% 90%;
-    --sidebar-ring: 174 58% 35%;
-  }
+    --shadow-soft: 0 20px 50px -30px hsl(158 42% 15% / 0.35);
 
-  .dark {
-    --background: 210 25% 8%;
-    --foreground: 210 20% 95%;
-
-    --card: 210 25% 12%;
-    --card-foreground: 210 20% 95%;
-
-    --popover: 210 25% 12%;
-    --popover-foreground: 210 20% 95%;
-
-    --primary: 174 55% 45%;
-    --primary-foreground: 210 25% 8%;
-
-    --secondary: 210 20% 18%;
-    --secondary-foreground: 210 20% 90%;
-
-    --muted: 210 20% 18%;
-    --muted-foreground: 210 15% 60%;
-
-    --accent: 174 40% 18%;
-    --accent-foreground: 174 55% 70%;
-
-    --destructive: 0 62% 50%;
-    --destructive-foreground: 0 0% 100%;
-
-    --border: 210 20% 20%;
-    --input: 210 20% 20%;
-    --ring: 174 55% 45%;
-
-    --section-alt: 210 25% 10%;
-
-    --sidebar-background: 210 25% 10%;
-    --sidebar-foreground: 210 20% 90%;
-    --sidebar-primary: 174 55% 45%;
-    --sidebar-primary-foreground: 210 25% 8%;
-    --sidebar-accent: 174 40% 15%;
-    --sidebar-accent-foreground: 174 55% 70%;
-    --sidebar-border: 210 20% 20%;
-    --sidebar-ring: 174 55% 45%;
+    --sidebar-background: 42 38% 96%;
+    --sidebar-foreground: 160 28% 11%;
+    --sidebar-primary: 158 42% 20%;
+    --sidebar-primary-foreground: 42 38% 96%;
+    --sidebar-accent: 174 22% 88%;
+    --sidebar-accent-foreground: 170 35% 16%;
+    --sidebar-border: 40 18% 82%;
+    --sidebar-ring: 174 40% 32%;
   }
 }
 
@@ -102,31 +57,52 @@
   * {
     @apply border-border;
   }
-
-  body {
-    @apply bg-background text-foreground antialiased;
-    font-feature-settings: "cv11", "ss01";
+  html {
+    scroll-behavior: smooth;
   }
-
-  h1, h2, h3, h4, h5, h6 {
-    @apply font-heading tracking-tight;
+  body {
+    @apply bg-background text-foreground antialiased font-sans;
+    font-size: 1.0625rem;
+    line-height: 1.65;
+  }
+  h1, h2, h3, h4 {
+    @apply font-heading text-foreground;
+    font-weight: 500;
+    letter-spacing: -0.015em;
+    line-height: 1.12;
+    text-wrap: balance;
+  }
+  :focus-visible {
+    outline: 2px solid hsl(var(--ring));
+    outline-offset: 3px;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
   }
 }
 
+@layer components {
+  .eyebrow {
+    @apply text-xs font-semibold uppercase tracking-[0.18em] text-brass;
+  }
+  .prose-clinic p { @apply mt-4 text-muted-foreground; }
+  .prose-clinic h2 { @apply mt-12 text-2xl sm:text-3xl; }
+  .prose-clinic h3 { @apply mt-8 text-xl; }
+  .prose-clinic ul { @apply mt-4 list-disc space-y-2 pl-5 text-muted-foreground; }
+  .prose-clinic a { @apply text-primary underline underline-offset-4; }
+}
+
 @layer utilities {
-  .text-balance {
-    text-wrap: balance;
-  }
-
-  .clinical-gradient {
-    background: var(--clinical-gradient);
-  }
-
-  .hero-gradient {
-    background: var(--hero-gradient);
-  }
-
-  .section-alt {
-    background-color: hsl(var(--section-alt));
+  .section-alt { background-color: hsl(var(--section-alt)); }
+  .shadow-soft { box-shadow: var(--shadow-soft); }
+  .fade-up { animation: fade-up 0.7s cubic-bezier(0.2, 0.7, 0.2, 1) both; }
+  @keyframes fade-up {
+    from { opacity: 0; transform: translateY(12px); }
+    to { opacity: 1; transform: none; }
   }
 }
