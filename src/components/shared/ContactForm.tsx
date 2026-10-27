@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -28,8 +28,18 @@ export function ContactForm() {
   const [reference, setReference] = useState("");
   const startedAt = useRef(Date.now());
   const inFlight = useRef(false);
+  const errorRef = useRef<HTMLDivElement>(null);
+  useEffect(() => { if (status === "error") errorRef.current?.focus(); }, [status]);
 
-  const set = (k: keyof typeof initial, v: string | boolean) => setForm((f) => ({ ...f, [k]: v }));
+  const set = (k: keyof typeof initial, v: string | boolean) => {
+    setForm((f) => ({ ...f, [k]: v }));
+    // Clear a field's error as soon as it is corrected.
+    setErrors((e) => {
+      if (!e[k]) return e;
+      const { [k]: _removed, ...rest } = e;
+      return rest;
+    });
+  };
 
   async function onSubmit(e: React.FormEvent) {
     e.preventDefault();
@@ -38,6 +48,9 @@ export function ContactForm() {
     if (!parsed.success) {
       const errs: Record<string, string> = {};
       parsed.error.issues.forEach((i) => (errs[String(i.path[0])] ??= i.message));
+      // The schema checks the chosen contact detail only after other fields pass; report it now too.
+      if (form.preferredContact === "email" && !form.email.trim()) errs.email ??= "Please enter your email address";
+      if (form.preferredContact === "phone" && !form.phone.trim()) errs.phone ??= "Please enter your phone number";
       setErrors(errs);
       const first = document.getElementById(Object.keys(errs)[0]);
       first?.focus({ preventScroll: true });
@@ -80,13 +93,18 @@ export function ContactForm() {
     );
   }
 
-  const field = (id: string) => ({
+  const field = (id: string, required = false) => ({
     id,
+    "aria-required": required || undefined,
     "aria-invalid": Boolean(errors[id]),
     "aria-describedby": errors[id] ? `${id}-error` : undefined,
   });
   const Err = ({ id }: { id: string }) =>
     errors[id] ? <p id={`${id}-error`} className="text-sm font-medium text-destructive">{errors[id]}</p> : null;
+
+  const Req = () => (
+    <span className="text-destructive" aria-hidden="true">*</span>
+  );
 
   const Choice = ({ name, value, label }: { name: "preferredContact" | "appointmentPreference"; value: string; label: string }) => (
     <label className="flex min-h-11 cursor-pointer items-center gap-3 rounded-lg border border-input bg-card px-4 py-2 has-[:checked]:border-primary has-[:checked]:bg-secondary/60">
@@ -97,20 +115,37 @@ export function ContactForm() {
 
   return (
     <form onSubmit={onSubmit} noValidate className="space-y-6" aria-describedby="form-note">
+      <p className="text-sm text-muted-foreground">Fields marked <span aria-hidden="true">*</span><span className="sr-only">"required"</span> are required.</p>
+
+      <div role="alert" aria-live="assertive">
+        {Object.keys(errors).length > 0 && (
+          <div className="rounded-lg border border-destructive/40 bg-destructive/5 p-4 text-sm">
+            <p className="font-medium text-foreground">
+              Please correct {Object.keys(errors).length === 1 ? "1 field" : `${Object.keys(errors).length} fields`}:
+            </p>
+            <ul className="mt-2 list-disc pl-5">
+              {Object.entries(errors).map(([k, m]) => (
+                <li key={k}><a className="text-destructive underline" href={`#${k}`} onClick={(e) => { e.preventDefault(); document.getElementById(k)?.focus(); }}>{m}</a></li>
+              ))}
+            </ul>
+          </div>
+        )}
+      </div>
+
       <p id="form-note" className="rounded-lg border border-brass/40 bg-muted/60 p-4 text-sm text-muted-foreground">
         Please do not include medical history, test results or other clinical details here. We will discuss your
         health privately during your consultation.
       </p>
 
       <div className="space-y-2">
-        <Label htmlFor="fullName">Full name</Label>
-        <Input {...field("fullName")} autoComplete="name" value={form.fullName} onChange={(e) => set("fullName", e.target.value)} />
+        <Label htmlFor="fullName">Full name <Req /></Label>
+        <Input {...field("fullName", true)} autoComplete="name" value={form.fullName} onChange={(e) => set("fullName", e.target.value)} />
         <Err id="fullName" />
       </div>
 
       <fieldset className="space-y-2">
-        <legend className="text-sm font-medium">How should we contact you?</legend>
-        <div className="grid gap-3 sm:grid-cols-2" id="preferredContact" tabIndex={-1}>
+        <legend className="text-sm font-medium">How should we contact you? <Req /></legend>
+        <div className="grid gap-3 sm:grid-cols-2" id="preferredContact" tabIndex={-1} role="radiogroup" aria-required="true" aria-invalid={Boolean(errors.preferredContact)} aria-describedby={errors.preferredContact ? "preferredContact-error" : undefined}>
           <Choice name="preferredContact" value="email" label="Email" />
           <Choice name="preferredContact" value="phone" label="Telephone" />
         </div>
@@ -119,20 +154,20 @@ export function ContactForm() {
 
       <div className="grid gap-6 sm:grid-cols-2">
         <div className="space-y-2">
-          <Label htmlFor="email">Email address</Label>
-          <Input {...field("email")} type="email" autoComplete="email" value={form.email} onChange={(e) => set("email", e.target.value)} />
+          <Label htmlFor="email">Email address {form.preferredContact === "email" && <Req />}</Label>
+          <Input {...field("email", form.preferredContact === "email")} type="email" autoComplete="email" value={form.email} onChange={(e) => set("email", e.target.value)} />
           <Err id="email" />
         </div>
         <div className="space-y-2">
-          <Label htmlFor="phone">Telephone</Label>
-          <Input {...field("phone")} type="tel" autoComplete="tel" value={form.phone} onChange={(e) => set("phone", e.target.value)} />
+          <Label htmlFor="phone">Telephone {form.preferredContact === "phone" && <Req />}</Label>
+          <Input {...field("phone", form.preferredContact === "phone")} type="tel" autoComplete="tel" value={form.phone} onChange={(e) => set("phone", e.target.value)} />
           <Err id="phone" />
         </div>
       </div>
 
       <fieldset className="space-y-2">
-        <legend className="text-sm font-medium">Appointment preference</legend>
-        <div className="grid gap-3 sm:grid-cols-3" id="appointmentPreference" tabIndex={-1}>
+        <legend className="text-sm font-medium">Appointment preference <Req /></legend>
+        <div className="grid gap-3 sm:grid-cols-3" id="appointmentPreference" tabIndex={-1} role="radiogroup" aria-required="true" aria-invalid={Boolean(errors.appointmentPreference)} aria-describedby={errors.appointmentPreference ? "appointmentPreference-error" : undefined}>
           <Choice name="appointmentPreference" value="in_person" label="In person (London)" />
           <Choice name="appointmentPreference" value="video" label="Video" />
           <Choice name="appointmentPreference" value="either" label="No preference" />
@@ -157,7 +192,7 @@ export function ContactForm() {
       </label>
 
       {status === "error" && (
-        <div role="alert" className="flex gap-3 rounded-lg border border-destructive/40 bg-destructive/5 p-4 text-sm">
+        <div ref={errorRef} tabIndex={-1} id="form-error" role="alert" className="flex gap-3 rounded-lg border border-destructive/40 bg-destructive/5 p-4 text-sm">
           <AlertCircle className="h-5 w-5 shrink-0 text-destructive" aria-hidden />
           <p>
             Sorry, we could not send your request. Nothing was submitted. Please try again, or call{" "}
