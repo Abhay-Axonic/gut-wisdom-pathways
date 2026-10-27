@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { Layout } from "@/components/layout/Layout";
 import { Seo } from "@/components/shared/Seo";
-import { PageHero, CtaBand } from "@/components/shared/PageHero";
+import { PageHero, CtaBand, RelatedLinks } from "@/components/shared/PageHero";
 
 const areas = [
   { t: "Inflammatory bowel disease", d: "People with Crohn’s disease and ulcerative colitis often have differences in gut microbes. These are research associations; diagnosis and monitoring still rely on standard tests such as calprotectin, blood tests and endoscopy." },
@@ -24,12 +24,12 @@ export default function SciencePage() {
         <p>We separate what research has found from what is proven to help patients. Here is where things stand.</p>
       </PageHero>
       <section className="container py-16">
-        <h2 className="text-3xl">Areas of active research</h2>
+        <h2 className="">Areas of active research</h2>
         <p className="mt-3 max-w-2xl text-muted-foreground">These are fields of study, not services or promised outcomes.</p>
         <div className="mt-10 grid gap-x-12 gap-y-10 md:grid-cols-2">
           {areas.map((a) => (
             <article key={a.t} className="border-t border-border pt-6">
-              <h3 className="text-2xl">{a.t}</h3>
+              <h3 className="">{a.t}</h3>
               <p className="mt-3 text-muted-foreground">{a.d}</p>
             </article>
           ))}
@@ -51,6 +51,7 @@ export default function SciencePage() {
           </p>
         </div>
       </section>
+      <RelatedLinks page="science" />
       <CtaBand location="science" />
     </Layout>
   );

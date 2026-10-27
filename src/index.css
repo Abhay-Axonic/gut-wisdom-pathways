@@ -21,9 +21,9 @@
     --secondary-foreground: 170 35% 16%;
 
     --muted: 40 26% 91%;
-    --muted-foreground: 160 12% 32%;
+    --muted-foreground: 160 14% 27%;
 
-    --accent: 174 26% 40%;
+    --accent: 174 30% 33%;
     --accent-foreground: 42 38% 97%;
 
     --destructive: 2 62% 42%;
@@ -35,7 +35,8 @@
 
     --radius: 0.75rem;
 
-    --brass: 36 46% 42%;
+    --brass: 34 52% 34%;
+    --brass-light: 38 55% 62%;
     --forest: 158 42% 15%;
     --ivory: 42 38% 96%;
     --section-alt: 40 30% 92%;
@@ -58,12 +59,15 @@
     @apply border-border;
   }
   html {
-    scroll-behavior: smooth;
+    scroll-padding-top: 6rem;
+  }
+  @media (prefers-reduced-motion: no-preference) {
+    html { scroll-behavior: smooth; }
   }
   body {
     @apply bg-background text-foreground antialiased font-sans;
-    font-size: 1.0625rem;
-    line-height: 1.65;
+    font-size: clamp(1rem, 0.96rem + 0.2vw, 1.0625rem);
+    line-height: 1.7;
   }
   h1, h2, h3, h4 {
     @apply font-heading text-foreground;
@@ -72,12 +76,18 @@
     line-height: 1.12;
     text-wrap: balance;
   }
+  /* Responsive type scale — overrides ad-hoc size utilities on headings */
+  h1 { font-size: clamp(2.25rem, 1.6rem + 2.6vw, 3.75rem); line-height: 1.06; }
+  h2 { font-size: clamp(1.625rem, 1.3rem + 1.3vw, 2.375rem); }
+  h3 { font-size: clamp(1.3125rem, 1.2rem + 0.4vw, 1.5rem); line-height: 1.25; }
+  p, li { text-wrap: pretty; }
   :focus-visible {
     outline: 2px solid hsl(var(--ring));
     outline-offset: 3px;
+    scroll-margin: 6rem;
   }
+  a, button { transition: color .2s ease, background-color .2s ease, border-color .2s ease, box-shadow .2s ease, transform .2s ease; }
   @media (prefers-reduced-motion: reduce) {
-    html { scroll-behavior: auto; }
     *, *::before, *::after {
       animation-duration: 0.01ms !important;
       animation-iteration-count: 1 !important;
@@ -88,21 +98,37 @@
 
 @layer components {
   .eyebrow {
-    @apply text-xs font-semibold uppercase tracking-[0.18em] text-brass;
+    @apply text-sm font-semibold uppercase text-brass;
+    letter-spacing: 0.1em;
   }
-  .prose-clinic p { @apply mt-4 text-muted-foreground; }
-  .prose-clinic h2 { @apply mt-12 text-2xl sm:text-3xl; }
-  .prose-clinic h3 { @apply mt-8 text-xl; }
-  .prose-clinic ul { @apply mt-4 list-disc space-y-2 pl-5 text-muted-foreground; }
+  .lede { font-size: clamp(1.0625rem, 1rem + 0.35vw, 1.25rem); line-height: 1.6; @apply text-muted-foreground; }
+  .measure { max-width: 65ch; }
+  .section { @apply py-16 sm:py-20 lg:py-24; }
+  .prose-clinic p { @apply mt-4 text-muted-foreground; max-width: 68ch; }
+  .prose-clinic h2 { @apply mt-12; }
+  .prose-clinic h3 { @apply mt-8; }
+  .prose-clinic ul { @apply mt-4 list-disc space-y-2 pl-5 text-muted-foreground; max-width: 68ch; }
   .prose-clinic a { @apply text-primary underline underline-offset-4; }
+  .lift { transition: transform .25s ease, box-shadow .25s ease; }
+  .lift:hover { transform: translateY(-3px); box-shadow: var(--shadow-soft); }
 }
 
 @layer utilities {
   .section-alt { background-color: hsl(var(--section-alt)); }
   .shadow-soft { box-shadow: var(--shadow-soft); }
-  .fade-up { animation: fade-up 0.7s cubic-bezier(0.2, 0.7, 0.2, 1) both; }
+  .fade-up { animation: fade-up 0.55s cubic-bezier(0.2, 0.7, 0.2, 1) both; }
+  .fade-up-delay { animation-delay: 120ms; }
   @keyframes fade-up {
-    from { opacity: 0; transform: translateY(12px); }
+    from { opacity: 0; transform: translateY(14px); }
     to { opacity: 1; transform: none; }
+  }
+  /* Reveal: only hidden once JS has opted in, so content is never stuck invisible */
+  .js-reveal [data-reveal]:not(.is-visible) { opacity: 0; transform: translateY(16px); }
+  .js-reveal [data-reveal] { transition: opacity .5s ease, transform .5s cubic-bezier(0.2, 0.7, 0.2, 1); }
+  .draw path, .draw circle.ring { stroke-dasharray: 1; stroke-dashoffset: 0; animation: draw 1.6s ease-out both; }
+  @keyframes draw { from { stroke-dashoffset: 1; } to { stroke-dashoffset: 0; } }
+  @media (prefers-reduced-motion: reduce) {
+    .js-reveal [data-reveal] { opacity: 1 !important; transform: none !important; }
+    .draw path, .draw circle.ring { animation: none; }
   }
 }

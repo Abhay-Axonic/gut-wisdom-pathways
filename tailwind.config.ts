@@ -15,6 +15,7 @@ export default {
     extend: {
       colors: {
         brass: "hsl(var(--brass))",
+        "brass-light": "hsl(var(--brass-light))",
         forest: "hsl(var(--forest))",
         ivory: "hsl(var(--ivory))",
         border: "hsl(var(--border))",

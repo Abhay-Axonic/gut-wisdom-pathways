@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Layout } from "@/components/layout/Layout";
 import { Seo } from "@/components/shared/Seo";
-import { PageHero, CtaBand } from "@/components/shared/PageHero";
+import { PageHero, CtaBand, RelatedLinks } from "@/components/shared/PageHero";
 import { site } from "@/config/site";
 
 const journey = [
@@ -30,7 +30,7 @@ export default function ServicesPage() {
           {journey.map((j, i) => (
             <li key={j.t} className="grid gap-4 border-b border-border py-10 md:grid-cols-[120px_1fr_1.2fr]">
               <span className="font-heading text-4xl text-brass">0{i + 1}</span>
-              <h2 className="text-2xl">{j.t}</h2>
+              <h2 className="">{j.t}</h2>
               <p className="text-muted-foreground">{j.d}</p>
             </li>
           ))}
@@ -40,14 +40,14 @@ export default function ServicesPage() {
       <section className="section-alt border-y border-border/70">
         <div className="container grid gap-10 py-20 md:grid-cols-2">
           <div>
-            <h2 className="text-3xl">What the consultation is not</h2>
+            <h2 className="">What the consultation is not</h2>
             <p className="mt-4 text-muted-foreground">
               It is not an emergency service, and it does not replace your GP or hospital care. We will not promise
               that testing or any treatment will relieve your symptoms.
             </p>
           </div>
           <div>
-            <h2 className="text-3xl">Practical arrangements</h2>
+            <h2 className="">Practical arrangements</h2>
             <p className="mt-4 text-muted-foreground">
               Appointments are based in {site.location.city}. When we contact you, we confirm the appointment type,
               length and fee before anything is booked.
@@ -59,6 +59,7 @@ export default function ServicesPage() {
           </div>
         </div>
       </section>
+      <RelatedLinks page="services" />
       <CtaBand location="services" />
     </Layout>
   );

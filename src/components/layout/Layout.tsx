@@ -5,8 +5,10 @@ import { Footer } from "./Footer";
 import { ConsentBanner } from "@/components/shared/ConsentBanner";
 import { ctaHref, ctaLabel } from "@/config/site";
 import { track } from "@/lib/analytics";
+import { useSectionReveal } from "@/components/shared/Reveal";
 
 export function Layout({ children, hideMobileCta }: { children: ReactNode; hideMobileCta?: boolean }) {
+  useSectionReveal();
   return (
     <div className="flex min-h-screen flex-col">
       <Navbar />

@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Layout } from "@/components/layout/Layout";
 import { Seo } from "@/components/shared/Seo";
-import { PageHero, CtaBand } from "@/components/shared/PageHero";
+import { PageHero, CtaBand, RelatedLinks } from "@/components/shared/PageHero";
 import { site, ctaHref, ctaLabel } from "@/config/site";
 import { track } from "@/lib/analytics";
 
@@ -10,7 +10,7 @@ export function FeeRow({ name, detail, price }: { name: string; detail: string; 
   return (
     <div className="grid gap-3 border-b border-border py-8 sm:grid-cols-[1fr_auto] sm:items-baseline">
       <div>
-        <h3 className="text-2xl">{name}</h3>
+        <h3 className="">{name}</h3>
         <p className="mt-2 max-w-xl text-muted-foreground">{detail}</p>
       </div>
       <p className="font-heading text-2xl text-primary sm:text-right">{price ?? <span className="text-base font-sans text-muted-foreground">Please request our current fees</span>}</p>
@@ -39,14 +39,14 @@ export default function FeesPage() {
         </div>
         <div className="mt-12 grid gap-10 md:grid-cols-2">
           <div>
-            <h2 className="text-2xl">What may cost extra</h2>
+            <h2 className="">What may cost extra</h2>
             <p className="mt-3 text-muted-foreground">
               Any investigations, tests or onward referrals are separate from the consultation fee. We will always
               explain these and their costs before you decide.
             </p>
           </div>
           <div>
-            <h2 className="text-2xl">Insurance</h2>
+            <h2 className="">Insurance</h2>
             <p className="mt-3 text-muted-foreground">
               We cannot guarantee that an insurer will cover your appointment. If you plan to claim, please check with
               your insurer before booking.
@@ -56,6 +56,7 @@ export default function FeesPage() {
         <Button asChild size="lg" className="mt-12" onClick={() => track("cta_click", "fees")}><Link to={ctaHref}>{ctaLabel}</Link></Button>
         <p className="mt-4 text-sm text-muted-foreground">Questions about fees? <Link to="/contact" className="underline">Contact us</Link>.</p>
       </section>
+      <RelatedLinks page="fees" />
       <CtaBand location="fees_band" />
     </Layout>
   );

@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { Layout } from "@/components/layout/Layout";
 import { Seo } from "@/components/shared/Seo";
-import { MicrobeField } from "@/components/shared/Illustrations";
+import { MicrobeField, CurveDivider, Sprig, BrassRule } from "@/components/shared/Illustrations";
 import { CtaBand } from "@/components/shared/PageHero";
 import { site, ctaHref, ctaLabel } from "@/config/site";
 import { clinicians } from "@/config/clinicians";
@@ -65,17 +65,17 @@ export default function HomePage() {
 
       {/* Hero */}
       <section className="relative overflow-hidden">
-        <div className="container grid items-center gap-12 py-16 sm:py-24 lg:grid-cols-[1.15fr_0.85fr] lg:py-28">
+        <div className="container grid items-center gap-10 py-12 sm:py-16 lg:grid-cols-[1.1fr_0.9fr] lg:gap-16 lg:py-20">
           <div className="fade-up">
             <p className="eyebrow">{site.brandName} · London</p>
-            <h1 className="mt-5 text-[2.6rem] sm:text-6xl lg:text-7xl">
+            <h1 className="mt-4 max-w-[15ch]">
               Understand your gut health with <em className="text-accent">specialist-led</em> care.
             </h1>
-            <p className="mt-6 max-w-xl text-lg text-muted-foreground sm:text-xl">
+            <p className="lede measure mt-5">
               Consultant-led consultations for people with digestive symptoms or questions about the microbiome. We
               assess you first, explain your options plainly, and only discuss testing where it could genuinely help.
             </p>
-            <div className="mt-9 flex flex-col gap-3 sm:flex-row">
+            <div className="mt-8 flex flex-col gap-3 sm:flex-row">
               <Button asChild size="lg" onClick={() => track("cta_click", "home_hero")}>
                 <Link to={ctaHref}>{ctaLabel}</Link>
               </Button>
@@ -84,7 +84,7 @@ export default function HomePage() {
               </Button>
             </div>
           </div>
-          <MicrobeField className="mx-auto w-full max-w-md fade-up" />
+          <MicrobeField animate className="fade-up fade-up-delay mx-auto hidden w-full max-w-sm sm:block lg:max-w-md" />
         </div>
       </section>
 
@@ -104,11 +104,11 @@ export default function HomePage() {
       </section>
 
       {/* Who it suits */}
-      <section className="container py-20 sm:py-28">
+      <section className="container section">
         <div className="grid gap-12 lg:grid-cols-[0.9fr_1.1fr]">
           <div>
             <p className="eyebrow">Who we see</p>
-            <h2 className="mt-4 text-3xl sm:text-4xl">A consultation may suit you if you have…</h2>
+            <h2 className="mt-4">A consultation may suit you if you have…</h2>
             <p className="mt-5 text-muted-foreground">
               We cannot promise to resolve symptoms, but we can give you a careful specialist opinion and a clear
               explanation of the evidence.
@@ -126,28 +126,37 @@ export default function HomePage() {
       </section>
 
       {/* Steps */}
-      <section id="how-it-works" className="scroll-mt-24 bg-forest text-ivory">
-        <div className="container py-20 sm:py-28">
-          <p className="text-xs font-semibold uppercase tracking-[0.18em] text-brass">How it works</p>
-          <h2 className="mt-4 max-w-2xl text-3xl text-ivory sm:text-4xl">Consultation first. Testing only if it is appropriate.</h2>
-          <ol className="mt-14 grid gap-10 md:grid-cols-2 lg:grid-cols-4">
-            {steps.map((s, i) => (
-              <li key={s.t} className="border-t border-ivory/25 pt-6">
-                <span className="font-heading text-4xl text-brass">0{i + 1}</span>
-                <h3 className="mt-3 text-xl text-ivory">{s.t}</h3>
-                <p className="mt-2 text-ivory/75">{s.d}</p>
-              </li>
-            ))}
-          </ol>
+      <section id="how-it-works" className="scroll-mt-24">
+        <CurveDivider className="fill-forest" />
+        <div className="bg-forest text-ivory">
+          <div className="container relative py-16 sm:py-20">
+            <Sprig className="pointer-events-none absolute right-6 top-10 hidden h-28 w-20 opacity-70 lg:block" />
+            <p className="text-sm font-semibold uppercase tracking-[0.1em] text-brass-light">How it works</p>
+            <h2 className="mt-4 max-w-2xl text-ivory">Consultation first. Testing only if it is appropriate.</h2>
+            <ol className="mt-12 grid gap-10 md:grid-cols-2 lg:grid-cols-4">
+              {steps.map((s, i) => (
+                <li key={s.t} className="border-t border-ivory/25 pt-6">
+                  <span className="font-heading text-4xl text-brass-light">0{i + 1}</span>
+                  <h3 className="mt-3 text-ivory">{s.t}</h3>
+                  <p className="mt-2 text-ivory/85">{s.d}</p>
+                </li>
+              ))}
+            </ol>
+            <p className="mt-12 text-ivory/85">
+              Read more about <Link to="/services" className="text-ivory underline underline-offset-4">what a consultation covers</Link> and{" "}
+              <Link to="/fees" className="text-ivory underline underline-offset-4">how fees are confirmed</Link>.
+            </p>
+          </div>
         </div>
+        <CurveDivider flip className="fill-forest" />
       </section>
 
       {/* Options */}
-      <section className="container py-20 sm:py-28">
+      <section className="container section">
         <div className="grid gap-10 lg:grid-cols-2">
-          <div className="rounded-3xl border border-border bg-card p-8 shadow-soft sm:p-10">
+          <div className="lift rounded-3xl border border-border bg-card p-8 shadow-soft sm:p-10">
             <p className="eyebrow">Available now</p>
-            <h2 className="mt-3 text-3xl">Specialist consultation</h2>
+            <h2 className="mt-3">Specialist consultation</h2>
             <p className="mt-4 text-muted-foreground">
               A consultant-led assessment of your digestive health, a review of previous investigations, and a clear
               explanation of next steps. We confirm appointment arrangements with you when we get in touch.
@@ -159,7 +168,7 @@ export default function HomePage() {
           </div>
           <div className="rounded-3xl border border-dashed border-border p-8 sm:p-10">
             <p className="eyebrow">About testing</p>
-            <h2 className="mt-3 text-3xl">Microbiome testing</h2>
+            <h2 className="mt-3">Microbiome testing</h2>
             <p className="mt-4 text-muted-foreground">
               {site.services.testingAvailable
                 ? "Where it is appropriate and agreed with you, testing may be arranged after your consultation."
@@ -172,10 +181,10 @@ export default function HomePage() {
 
       {/* Evidence */}
       <section className="section-alt border-y border-border/70">
-        <div className="container py-20 sm:py-28">
+        <div className="container section">
           <div className="max-w-2xl">
             <p className="eyebrow">An honest view of the evidence</p>
-            <h2 className="mt-4 text-3xl sm:text-4xl">Microbiome science is promising — and still early.</h2>
+            <h2 className="mt-4">Microbiome science is promising — and still early.</h2>
             <p className="mt-5 text-muted-foreground">
               Research links the gut microbiome with many conditions, but for most people routine microbiome testing
               has limited established clinical use. It does not replace standard medical assessment, investigations or
@@ -184,11 +193,11 @@ export default function HomePage() {
           </div>
           <div className="mt-12 grid gap-8 md:grid-cols-2">
             <div>
-              <h3 className="text-xl">A stool microbiome test can</h3>
+              <h3 className="">A stool microbiome test can</h3>
               <ul className="mt-4 space-y-3">{can.map((c) => <li key={c} className="flex gap-3"><Check className="mt-1 h-5 w-5 shrink-0 text-accent" aria-hidden />{c}</li>)}</ul>
             </div>
             <div>
-              <h3 className="text-xl">It cannot</h3>
+              <h3 className="">It cannot</h3>
               <ul className="mt-4 space-y-3">{cannot.map((c) => <li key={c} className="flex gap-3"><Minus className="mt-1 h-5 w-5 shrink-0 text-destructive" aria-hidden />{c}</li>)}</ul>
             </div>
           </div>
@@ -197,13 +206,13 @@ export default function HomePage() {
       </section>
 
       {/* Clinicians */}
-      <section className="container py-20 sm:py-28">
-        <p className="eyebrow">Your clinicians</p>
-        <h2 className="mt-4 text-3xl sm:text-4xl">Who you will see</h2>
+      <section className="container section">
+        <BrassRule className="mb-5" /><p className="eyebrow">Your clinicians</p>
+        <h2 className="mt-4">Who you will see</h2>
         <div className="mt-12 grid gap-10 md:grid-cols-2">
           {clinicians.map((c) => (
             <article key={c.slug} className="border-t-2 border-brass pt-6">
-              <h3 className="text-2xl">{c.name}</h3>
+              <h3 className="">{c.name}</h3>
               <p className="text-accent">{c.role}</p>
               <p className="mt-4 text-muted-foreground">{c.summary}</p>
             </article>
@@ -217,7 +226,7 @@ export default function HomePage() {
         <div className="grid gap-10 lg:grid-cols-[0.8fr_1.2fr]">
           <div>
             <p className="eyebrow">Practical questions</p>
-            <h2 className="mt-4 text-3xl sm:text-4xl">Before you get in touch</h2>
+            <h2 className="mt-4">Before you get in touch</h2>
             <Button asChild variant="link" className="mt-4 px-0"><Link to="/faq">All FAQs <ArrowRight className="ml-1 h-4 w-4" /></Link></Button>
           </div>
           <Accordion type="single" collapsible>

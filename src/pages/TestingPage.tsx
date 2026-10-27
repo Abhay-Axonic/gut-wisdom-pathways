@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { Layout } from "@/components/layout/Layout";
 import { Seo } from "@/components/shared/Seo";
-import { PageHero, CtaBand } from "@/components/shared/PageHero";
+import { PageHero, CtaBand, RelatedLinks } from "@/components/shared/PageHero";
 import { site } from "@/config/site";
 
 export default function TestingPage() {
@@ -67,6 +67,7 @@ export default function TestingPage() {
           consultation works</Link>.
         </p>
       </article>
+      <RelatedLinks page="testing" />
       <CtaBand title="Unsure whether a test is worth it?" text="A specialist consultation can help you decide — and point you towards the investigations that matter." location="testing" />
     </Layout>
   );

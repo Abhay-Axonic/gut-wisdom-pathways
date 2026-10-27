@@ -1,6 +1,6 @@
 import { Layout } from "@/components/layout/Layout";
 import { Seo } from "@/components/shared/Seo";
-import { PageHero, CtaBand } from "@/components/shared/PageHero";
+import { PageHero, CtaBand, RelatedLinks } from "@/components/shared/PageHero";
 import { Leaf } from "@/components/shared/Illustrations";
 import { clinicians } from "@/config/clinicians";
 import { site } from "@/config/site";
@@ -30,12 +30,13 @@ export default function CliniciansPage() {
             </div>
             <div>
               <p className="eyebrow">{c.role}</p>
-              <h2 className="mt-3 text-3xl sm:text-4xl">{c.name}</h2>
+              <h2 className="mt-3">{c.name}</h2>
               <p className="mt-5 max-w-2xl text-lg text-muted-foreground">{c.summary}</p>
             </div>
           </article>
         ))}
       </section>
+      <RelatedLinks page="clinicians" />
       <CtaBand location="clinicians" />
     </Layout>
   );

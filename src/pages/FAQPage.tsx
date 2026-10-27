@@ -37,12 +37,12 @@ const groups = [
 export default function FAQPage() {
   return (
     <Layout>
-      <Seo title="Frequently asked questions" description="Answers about consultations, microbiome testing, fees and practical arrangements at our London gut health clinic." path="/faq" breadcrumbs={[{ name: "FAQs", path: "/faq" }]} />
+      <Seo title="Frequently asked questions" description="Answers about consultations, microbiome testing, fees and practical arrangements at our London gut health clinic." path="/faq" breadcrumbs={[{ name: "FAQs", path: "/faq" }]} jsonLd={[{ "@context": "https://schema.org", "@type": "FAQPage", mainEntity: groups.flatMap((g) => g.items.map((i) => ({ "@type": "Question", name: i.q, acceptedAnswer: { "@type": "Answer", text: i.a } }))) }]} />
       <PageHero eyebrow="FAQs" title="Frequently asked questions" />
       <section className="container max-w-4xl py-16">
         {groups.map((g) => (
           <div key={g.t} className="mb-14">
-            <h2 className="text-2xl sm:text-3xl">{g.t}</h2>
+            <h2 className="">{g.t}</h2>
             <Accordion type="multiple" className="mt-4">
               {g.items.map((f) => (
                 <AccordionItem key={f.q} value={f.q}>
