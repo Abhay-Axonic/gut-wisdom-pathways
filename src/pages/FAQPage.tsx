@@ -37,7 +37,7 @@ const groups = [
 export default function FAQPage() {
   return (
     <Layout>
-      <Seo title="Frequently asked questions" description="Answers about consultations, microbiome testing, fees and practical arrangements at our London gut health clinic." path="/faq" breadcrumbs={[{ name: "FAQs", path: "/faq" }]} />
+      <Seo title="Frequently asked questions" description="Answers about consultations, microbiome testing, fees and practical arrangements at our London gut health clinic." path="/faq" breadcrumbs={[{ name: "FAQs", path: "/faq" }]} jsonLd={[{ "@context": "https://schema.org", "@type": "FAQPage", mainEntity: groups.flatMap((g) => g.items.map((i) => ({ "@type": "Question", name: i.q, acceptedAnswer: { "@type": "Answer", text: i.a } }))) }]} />
       <PageHero eyebrow="FAQs" title="Frequently asked questions" />
       <section className="container max-w-4xl py-16">
         {groups.map((g) => (

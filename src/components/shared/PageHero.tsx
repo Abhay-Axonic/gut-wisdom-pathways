@@ -1,7 +1,7 @@
 import { ReactNode } from "react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { Leaf, MicrobeField } from "./Illustrations";
+import { Leaf, MicrobeField, MicrobeMotif } from "./Illustrations";
 import { ctaHref, ctaLabel, site } from "@/config/site";
 import { track } from "@/lib/analytics";
 
