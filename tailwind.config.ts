@@ -60,8 +60,8 @@ export default {
         "section-alt": "hsl(var(--section-alt))",
       },
       fontFamily: {
-        sans: ["Inter", "system-ui", "sans-serif"],
-        heading: ["Inter", "system-ui", "sans-serif"],
+        sans: ["Figtree", "system-ui", "sans-serif"],
+        heading: ["Fraunces", "Georgia", "serif"],
       },
       borderRadius: {
         lg: "var(--radius)",
