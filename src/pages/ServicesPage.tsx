@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Layout } from "@/components/layout/Layout";
 import { Seo } from "@/components/shared/Seo";
-import { PageHero, CtaBand } from "@/components/shared/PageHero";
+import { PageHero, CtaBand, RelatedLinks } from "@/components/shared/PageHero";
 import { site } from "@/config/site";
 
 const journey = [
@@ -59,6 +59,7 @@ export default function ServicesPage() {
           </div>
         </div>
       </section>
+      <RelatedLinks page="services" />
       <CtaBand location="services" />
     </Layout>
   );

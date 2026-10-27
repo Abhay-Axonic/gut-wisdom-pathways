@@ -46,3 +46,50 @@ export function CtaBand({
     </section>
   );
 }
+
+const relatedMap: Record<string, { to: string; label: string; note: string }[]> = {
+  services: [
+    { to: "/fees", label: "How consultation fees are confirmed", note: "Fees" },
+    { to: "/clinicians", label: "The clinicians you will see", note: "Clinicians" },
+    { to: "/testing", label: "When a microbiome test may or may not help", note: "Testing" },
+  ],
+  testing: [
+    { to: "/science", label: "What the research currently shows", note: "The science" },
+    { to: "/services", label: "What a specialist consultation covers", note: "Services" },
+    { to: "/faq", label: "Common questions before you get in touch", note: "FAQs" },
+  ],
+  science: [
+    { to: "/testing", label: "What a stool microbiome test can and cannot tell you", note: "Testing" },
+    { to: "/services", label: "How a consultation works", note: "Services" },
+    { to: "/clinicians", label: "Who leads the clinic", note: "Clinicians" },
+  ],
+  fees: [
+    { to: "/services", label: "What the consultation includes", note: "Services" },
+    { to: "/faq", label: "Practical questions about appointments", note: "FAQs" },
+    { to: "/contact", label: "Ways to contact the clinic", note: "Contact" },
+  ],
+  clinicians: [
+    { to: "/services", label: "What to expect from your consultation", note: "Services" },
+    { to: "/about", label: "How the clinic practises", note: "About" },
+    { to: "/science", label: "Our view of the microbiome evidence", note: "The science" },
+  ],
+};
+
+export function RelatedLinks({ page }: { page: keyof typeof relatedMap }) {
+  const items = relatedMap[page];
+  return (
+    <section className="container pt-4">
+      <h2 className="sr-only">Related pages</h2>
+      <ul className="grid gap-4 border-t border-border pt-8 md:grid-cols-3">
+        {items.map((i) => (
+          <li key={i.to}>
+            <Link to={i.to} className="lift group block rounded-2xl border border-border bg-card p-6">
+              <span className="eyebrow">{i.note}</span>
+              <span className="mt-2 block font-heading text-xl text-foreground group-hover:text-primary">{i.label} →</span>
+            </Link>
+          </li>
+        ))}
+      </ul>
+    </section>
+  );
+}

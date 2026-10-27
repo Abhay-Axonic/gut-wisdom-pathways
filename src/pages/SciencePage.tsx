@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { Layout } from "@/components/layout/Layout";
 import { Seo } from "@/components/shared/Seo";
-import { PageHero, CtaBand } from "@/components/shared/PageHero";
+import { PageHero, CtaBand, RelatedLinks } from "@/components/shared/PageHero";
 
 const areas = [
   { t: "Inflammatory bowel disease", d: "People with Crohn’s disease and ulcerative colitis often have differences in gut microbes. These are research associations; diagnosis and monitoring still rely on standard tests such as calprotectin, blood tests and endoscopy." },
@@ -51,6 +51,7 @@ export default function SciencePage() {
           </p>
         </div>
       </section>
+      <RelatedLinks page="science" />
       <CtaBand location="science" />
     </Layout>
   );

@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Layout } from "@/components/layout/Layout";
 import { Seo } from "@/components/shared/Seo";
-import { PageHero, CtaBand } from "@/components/shared/PageHero";
+import { PageHero, CtaBand, RelatedLinks } from "@/components/shared/PageHero";
 import { site, ctaHref, ctaLabel } from "@/config/site";
 import { track } from "@/lib/analytics";
 
@@ -56,6 +56,7 @@ export default function FeesPage() {
         <Button asChild size="lg" className="mt-12" onClick={() => track("cta_click", "fees")}><Link to={ctaHref}>{ctaLabel}</Link></Button>
         <p className="mt-4 text-sm text-muted-foreground">Questions about fees? <Link to="/contact" className="underline">Contact us</Link>.</p>
       </section>
+      <RelatedLinks page="fees" />
       <CtaBand location="fees_band" />
     </Layout>
   );

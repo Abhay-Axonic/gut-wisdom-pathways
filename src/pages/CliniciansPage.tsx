@@ -1,6 +1,6 @@
 import { Layout } from "@/components/layout/Layout";
 import { Seo } from "@/components/shared/Seo";
-import { PageHero, CtaBand } from "@/components/shared/PageHero";
+import { PageHero, CtaBand, RelatedLinks } from "@/components/shared/PageHero";
 import { Leaf } from "@/components/shared/Illustrations";
 import { clinicians } from "@/config/clinicians";
 import { site } from "@/config/site";
@@ -36,6 +36,7 @@ export default function CliniciansPage() {
           </article>
         ))}
       </section>
+      <RelatedLinks page="clinicians" />
       <CtaBand location="clinicians" />
     </Layout>
   );
