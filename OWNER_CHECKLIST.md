@@ -17,4 +17,4 @@ All values are set in `src/config/site.ts` and `src/config/clinicians.ts`.
 12. Analytics — choose provider/ID if wanted; consent banner then activates.
 13. Search Console — verification token, then submit sitemap.
 14. Hosting checks after first publish — confirm each page's own title/description appears when the published page is fetched directly (e.g. /services); real HTTP 404 status for unknown pages is not available on this hosting (missing pages are noindex and kept out of the sitemap).
-15. Test records to delete before launch: TEST, UI TEST, TEST Verification Run, UI TEST Journey, UI TEST Journey Two.
+15. Test records to delete before launch: TEST, UI TEST, TEST Verification Run, UI TEST Journey, UI TEST Journey Two, DOMAIN TEST.

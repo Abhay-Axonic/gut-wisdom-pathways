@@ -366,7 +366,7 @@ The evidence suggests this field has promise but requires careful, ethical imple
 
 This project was built with [Lovable](https://lovable.dev).
 
-**Live app**: https://gut-wisdom-pathways.lovable.app
+**Live app**: https://microbiome.gastrosurgery.co.uk
 
 ## Build with Lovable
 
