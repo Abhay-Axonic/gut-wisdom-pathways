@@ -7,13 +7,16 @@ export default {
   theme: {
     container: {
       center: true,
-      padding: "2rem",
+      padding: { DEFAULT: "1.25rem", sm: "2rem" },
       screens: {
         "2xl": "1400px",
       },
     },
     extend: {
       colors: {
+        brass: "hsl(var(--brass))",
+        forest: "hsl(var(--forest))",
+        ivory: "hsl(var(--ivory))",
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",
@@ -60,8 +63,8 @@ export default {
         "section-alt": "hsl(var(--section-alt))",
       },
       fontFamily: {
-        sans: ["Inter", "system-ui", "sans-serif"],
-        heading: ["Inter", "system-ui", "sans-serif"],
+        sans: ["Figtree", "system-ui", "sans-serif"],
+        heading: ["Fraunces", "Georgia", "serif"],
       },
       borderRadius: {
         lg: "var(--radius)",

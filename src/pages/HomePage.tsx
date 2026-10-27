@@ -1,390 +1,237 @@
 import { Link } from "react-router-dom";
+import { ArrowRight, Check, Minus } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent } from "@/components/ui/card";
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { Layout } from "@/components/layout/Layout";
-import { SectionHeader } from "@/components/shared/SectionHeader";
-import { EvidenceDisclosure } from "@/components/shared/EvidenceDisclosure";
-import {
-  ArrowRight,
-  Microscope,
-  Stethoscope,
-  FlaskConical,
-  Users,
-  ShieldCheck,
-  BookOpen,
-  CheckCircle2,
-  Activity,
-  HeartPulse,
-  Scale,
-  Pill,
-  Brain,
-  Sparkles,
-  Ribbon,
-} from "lucide-react";
+import { Seo } from "@/components/shared/Seo";
+import { MicrobeField } from "@/components/shared/Illustrations";
+import { CtaBand } from "@/components/shared/PageHero";
+import { site, ctaHref, ctaLabel } from "@/config/site";
+import { clinicians } from "@/config/clinicians";
+import { track } from "@/lib/analytics";
 
-const conditionsWithEvidence = [
-  {
-    icon: Activity,
-    title: "Inflammatory Bowel Disease",
-    subtitle: "IBD / Crohn's / Ulcerative Colitis",
-    evidence: "Strong Emerging",
-    description: "Research shows >90% diagnostic accuracy using microbial biomarkers. Monitoring applications under active investigation.",
-  },
-  {
-    icon: Brain,
-    title: "Irritable Bowel Syndrome",
-    subtitle: "IBS & Functional GI Disorders",
-    evidence: "Emerging",
-    description: "Studies correlate specific microbial patterns with IBS subtypes. Dietary interventions show promise for symptom management.",
-  },
-  {
-    icon: Scale,
-    title: "Metabolic Health",
-    subtitle: "Obesity & Type 2 Diabetes",
-    evidence: "Emerging",
-    description: "Consistent links between reduced diversity and metabolic conditions. Lifestyle interventions supported by microbiome insights.",
-  },
-  {
-    icon: Ribbon,
-    title: "Post-Chemotherapy Recovery",
-    subtitle: "Cancer Treatment Support",
-    evidence: "Emerging",
-    description: "Chemotherapy significantly disrupts gut microbiota. Research supports microbiome monitoring to guide recovery and reduce treatment side effects.",
-  },
-  {
-    icon: Pill,
-    title: "Post-Antibiotic Recovery",
-    subtitle: "Gut Restoration",
-    evidence: "Established",
-    description: "FDA-approved microbiota therapies for recurrent C. difficile. Evidence supports monitoring recovery after antibiotic courses.",
-  },
-  {
-    icon: HeartPulse,
-    title: "Digestive Wellness",
-    subtitle: "Bloating, Discomfort & Irregularity",
-    evidence: "Supportive",
-    description: "Functional markers and diversity analysis can guide dietary optimisation for common digestive complaints.",
-  },
+const suits = [
+  "Long-standing digestive symptoms such as bloating, altered bowel habit or discomfort, where you want a specialist view",
+  "An existing diagnosis such as IBS or inflammatory bowel disease, and questions about where microbiome research fits",
+  "Gut symptoms after antibiotics, illness or cancer treatment, and a wish to understand your options",
+  "Interest in a commercial microbiome test — before you spend money on one",
 ];
 
-const approachItems = [
-  {
-    icon: Stethoscope,
-    title: "Clinician-Supervised",
-    description: "All testing supervised by qualified healthcare professionals",
-  },
-  {
-    icon: ShieldCheck,
-    title: "Evidence-Based",
-    description: "Grounded in peer-reviewed research, transparent about limitations",
-  },
-  {
-    icon: Users,
-    title: "Integrated Care",
-    description: "Works alongside your existing healthcare providers",
-  },
-  {
-    icon: FlaskConical,
-    title: "Research Contribution",
-    description: "Contributing to clinical research to advance the field",
-  },
+const steps = [
+  { t: "Request a consultation", d: "Send a short request. We contact you to arrange a time — no medical details needed at this stage." },
+  { t: "Specialist assessment", d: "A consultant reviews your history and symptoms, and any investigations you have already had." },
+  { t: "A clear plan", d: "We explain what we think, which standard tests or referrals may help, and whether microbiome testing would add anything useful." },
+  { t: "Ongoing support", d: "Where it helps, we work alongside your GP or existing specialist so your care stays joined up." },
 ];
 
-const services = [
-  {
-    title: "Comprehensive Gut Analysis",
-    description:
-      "Complete metagenomic sequencing with bacterial diversity, functional pathways, and inflammatory markers.",
-  },
-  {
-    title: "Clinical Consultation",
-    description:
-      "60-minute consultations with specialist clinicians before and after testing.",
-  },
-  {
-    title: "Personalised Report",
-    description:
-      "20-30 page evidence-based report with actionable dietary and lifestyle recommendations.",
-  },
+const can = [
+  "Describe which microbes were detected in one stool sample",
+  "Support research and help frame discussion about diet and lifestyle",
+];
+const cannot = [
+  "Diagnose IBS, inflammatory bowel disease or cancer",
+  "Replace blood tests, stool inflammation tests, endoscopy or imaging",
+  "Reliably predict your future health or tell you which supplement to take",
+];
+
+const faqs = [
+  { q: "Do I need a referral?", a: "No. You can request a consultation yourself. If you have a GP or specialist, we are happy to keep them informed with your permission." },
+  { q: "Will I be sold a test or supplements?", a: "No. The consultation comes first. We do not sell supplements, and we will tell you honestly if a test is unlikely to help." },
+  { q: "Is this a replacement for my NHS care?", a: "No. Our role is to complement, not replace, the care you receive from your GP and hospital teams." },
+  { q: "What if my symptoms are urgent?", a: "Please contact your GP or NHS 111. If you have severe pain, bleeding or feel very unwell, call 999." },
 ];
 
 export default function HomePage() {
   return (
     <Layout>
-      {/* Hero Section */}
-      <section className="hero-gradient py-20 sm:py-32">
-        <div className="container">
-          <div className="mx-auto max-w-4xl text-center">
-            <h1 className="text-5xl font-bold tracking-tight text-foreground sm:text-6xl lg:text-7xl">
-              <span className="text-primary">Microbiome</span> Clinic
+      <Seo
+        title={`${site.brandName} London | Specialist-led gut health assessment`}
+        description="Specialist-led digestive health consultations in London, with honest, evidence-based guidance on what microbiome science and testing can and cannot tell you."
+        path="/"
+        jsonLd={[
+          {
+            "@context": "https://schema.org",
+            "@type": "MedicalClinic",
+            name: site.brandName,
+            url: site.productionUrl,
+            telephone: "+44 20 7099 9333",
+            email: site.contact.email,
+            address: { "@type": "PostalAddress", addressLocality: site.location.city, addressCountry: "GB" },
+            medicalSpecialty: "Gastroenterologic",
+            employee: clinicians.map((c) => ({ "@type": "Person", name: c.name, jobTitle: c.role })),
+          },
+        ]}
+      />
+
+      {/* Hero */}
+      <section className="relative overflow-hidden">
+        <div className="container grid items-center gap-12 py-16 sm:py-24 lg:grid-cols-[1.15fr_0.85fr] lg:py-28">
+          <div className="fade-up">
+            <p className="eyebrow">{site.brandName} · London</p>
+            <h1 className="mt-5 text-[2.6rem] sm:text-6xl lg:text-7xl">
+              Understand your gut health with <em className="text-accent">specialist-led</em> care.
             </h1>
-            <p className="mt-4 text-xl text-muted-foreground sm:text-2xl font-medium">
-              Evidence-Based Gut Health Analysis
+            <p className="mt-6 max-w-xl text-lg text-muted-foreground sm:text-xl">
+              Consultant-led consultations for people with digestive symptoms or questions about the microbiome. We
+              assess you first, explain your options plainly, and only discuss testing where it could genuinely help.
             </p>
-            <div className="mt-8 flex items-center justify-center gap-2 text-muted-foreground">
-              <Stethoscope className="h-5 w-5 text-primary" />
-              <span className="text-base sm:text-lg">
-                Led by Prof. Abhay Chopada (Consultant GI Surgeon) & Dr. Rashmi Kulkarni (Microbiome Specialist)
-              </span>
-            </div>
-            <p className="mt-6 text-base text-muted-foreground sm:text-lg max-w-2xl mx-auto">
-              Research-informed microbiome analysis integrated with standard medical care. 
-              Clinician-supervised testing with transparent, evidence-based guidance.
-            </p>
-            <div className="mt-8 flex flex-col gap-4 sm:flex-row sm:justify-center">
-              <Button asChild size="lg">
-                <Link to="/contact">
-                  Book Consultation
-                  <ArrowRight className="ml-2 h-4 w-4" />
-                </Link>
+            <div className="mt-9 flex flex-col gap-3 sm:flex-row">
+              <Button asChild size="lg" onClick={() => track("cta_click", "home_hero")}>
+                <Link to={ctaHref}>{ctaLabel}</Link>
               </Button>
-              <Button asChild variant="outline" size="lg">
-                <Link to="/science">View the Evidence</Link>
+              <Button asChild size="lg" variant="outline">
+                <a href="#how-it-works">How it works</a>
               </Button>
             </div>
           </div>
-
-          {/* Evidence Disclosure */}
-          <div className="mx-auto mt-12 max-w-3xl">
-            <EvidenceDisclosure />
-          </div>
+          <MicrobeField className="mx-auto w-full max-w-md fade-up" />
         </div>
       </section>
 
-      {/* Conditions With Evidence */}
-      <section className="py-16 sm:py-24">
-        <div className="container">
-          <SectionHeader
-            badge="Research Areas"
-            title="Conditions Where Microbiome Science Shows Promise"
-            description="Current research reveals meaningful connections between gut microbiome and these health areas. Evidence levels vary—we help you understand what the science actually shows."
-          />
-
-          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {conditionsWithEvidence.map((condition) => (
-              <Card key={condition.title} className="group relative overflow-hidden border-border/50 transition-all hover:border-primary/30 hover:shadow-lg">
-                <CardContent className="pt-6">
-                  <div className="flex items-start justify-between gap-4">
-                    <div className="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-lg bg-primary/10">
-                      <condition.icon className="h-6 w-6 text-primary" />
-                    </div>
-                    <span className={`rounded-full px-2.5 py-1 text-xs font-medium ${
-                      condition.evidence === "Strong Emerging" || condition.evidence === "Established"
-                        ? "bg-primary/15 text-primary"
-                        : condition.evidence === "Emerging"
-                        ? "bg-accent text-accent-foreground"
-                        : "bg-muted text-muted-foreground"
-                    }`}>
-                      {condition.evidence}
-                    </span>
-                  </div>
-                  <h3 className="mt-4 font-semibold text-foreground">{condition.title}</h3>
-                  <p className="text-sm text-primary/80">{condition.subtitle}</p>
-                  <p className="mt-3 text-sm text-muted-foreground leading-relaxed">
-                    {condition.description}
-                  </p>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-
-          <div className="mt-10 text-center">
-            <Button asChild variant="outline" size="lg">
-              <Link to="/science">
-                Explore the Full Evidence Base
-                <ArrowRight className="ml-2 h-4 w-4" />
+      {/* Clinician intro */}
+      <section className="border-y border-border/70 section-alt">
+        <div className="container grid gap-8 py-14 md:grid-cols-[auto_1fr] md:items-center">
+          <p className="eyebrow">Led by</p>
+          <div className="grid gap-6 sm:grid-cols-2">
+            {clinicians.map((c) => (
+              <Link key={c.slug} to={`/clinicians#${c.slug}`} className="group">
+                <p className="font-heading text-2xl group-hover:text-primary">{c.name}</p>
+                <p className="text-muted-foreground">{c.role}</p>
               </Link>
-            </Button>
-          </div>
-        </div>
-      </section>
-
-      {/* Our Approach */}
-      <section className="py-16 sm:py-24">
-        <div className="container">
-          <SectionHeader
-            badge="Our Approach"
-            title="Ethical, Research-Informed Practice"
-            description="We believe in transparency about both the promise and limitations of microbiome science."
-          />
-
-          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-            {approachItems.map((item) => (
-              <Card key={item.title} className="border-border/50">
-                <CardContent className="pt-6">
-                  <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-lg bg-accent">
-                    <item.icon className="h-6 w-6 text-primary" />
-                  </div>
-                  <h3 className="font-semibold text-foreground">{item.title}</h3>
-                  <p className="mt-2 text-sm text-muted-foreground">
-                    {item.description}
-                  </p>
-                </CardContent>
-              </Card>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Meet the Team Preview */}
-      <section className="section-alt py-16 sm:py-24">
-        <div className="container">
-          <div className="grid gap-12 lg:grid-cols-2 lg:items-center">
+      {/* Who it suits */}
+      <section className="container py-20 sm:py-28">
+        <div className="grid gap-12 lg:grid-cols-[0.9fr_1.1fr]">
+          <div>
+            <p className="eyebrow">Who we see</p>
+            <h2 className="mt-4 text-3xl sm:text-4xl">A consultation may suit you if you have…</h2>
+            <p className="mt-5 text-muted-foreground">
+              We cannot promise to resolve symptoms, but we can give you a careful specialist opinion and a clear
+              explanation of the evidence.
+            </p>
+          </div>
+          <ul className="divide-y divide-border border-y border-border">
+            {suits.map((s) => (
+              <li key={s} className="flex gap-4 py-5">
+                <span className="mt-2.5 h-1.5 w-1.5 shrink-0 rounded-full bg-brass" aria-hidden />
+                <span>{s}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </section>
+
+      {/* Steps */}
+      <section id="how-it-works" className="scroll-mt-24 bg-forest text-ivory">
+        <div className="container py-20 sm:py-28">
+          <p className="text-xs font-semibold uppercase tracking-[0.18em] text-brass">How it works</p>
+          <h2 className="mt-4 max-w-2xl text-3xl text-ivory sm:text-4xl">Consultation first. Testing only if it is appropriate.</h2>
+          <ol className="mt-14 grid gap-10 md:grid-cols-2 lg:grid-cols-4">
+            {steps.map((s, i) => (
+              <li key={s.t} className="border-t border-ivory/25 pt-6">
+                <span className="font-heading text-4xl text-brass">0{i + 1}</span>
+                <h3 className="mt-3 text-xl text-ivory">{s.t}</h3>
+                <p className="mt-2 text-ivory/75">{s.d}</p>
+              </li>
+            ))}
+          </ol>
+        </div>
+      </section>
+
+      {/* Options */}
+      <section className="container py-20 sm:py-28">
+        <div className="grid gap-10 lg:grid-cols-2">
+          <div className="rounded-3xl border border-border bg-card p-8 shadow-soft sm:p-10">
+            <p className="eyebrow">Available now</p>
+            <h2 className="mt-3 text-3xl">Specialist consultation</h2>
+            <p className="mt-4 text-muted-foreground">
+              A consultant-led assessment of your digestive health, a review of previous investigations, and a clear
+              explanation of next steps. We confirm appointment arrangements with you when we get in touch.
+            </p>
+            <div className="mt-8 flex flex-wrap gap-4">
+              <Button asChild onClick={() => track("cta_click", "home_options")}><Link to={ctaHref}>{ctaLabel}</Link></Button>
+              <Button asChild variant="ghost"><Link to="/fees">Fees <ArrowRight className="ml-1 h-4 w-4" /></Link></Button>
+            </div>
+          </div>
+          <div className="rounded-3xl border border-dashed border-border p-8 sm:p-10">
+            <p className="eyebrow">About testing</p>
+            <h2 className="mt-3 text-3xl">Microbiome testing</h2>
+            <p className="mt-4 text-muted-foreground">
+              {site.services.testingAvailable
+                ? "Where it is appropriate and agreed with you, testing may be arranged after your consultation."
+                : "We are not currently arranging microbiome tests. We can, however, help you understand whether a test is likely to be useful."}
+            </p>
+            <Button asChild variant="ghost" className="mt-8 px-0"><Link to="/testing">What testing can and cannot tell you <ArrowRight className="ml-1 h-4 w-4" /></Link></Button>
+          </div>
+        </div>
+      </section>
+
+      {/* Evidence */}
+      <section className="section-alt border-y border-border/70">
+        <div className="container py-20 sm:py-28">
+          <div className="max-w-2xl">
+            <p className="eyebrow">An honest view of the evidence</p>
+            <h2 className="mt-4 text-3xl sm:text-4xl">Microbiome science is promising — and still early.</h2>
+            <p className="mt-5 text-muted-foreground">
+              Research links the gut microbiome with many conditions, but for most people routine microbiome testing
+              has limited established clinical use. It does not replace standard medical assessment, investigations or
+              treatment.
+            </p>
+          </div>
+          <div className="mt-12 grid gap-8 md:grid-cols-2">
             <div>
-              <span className="mb-4 inline-block rounded-full bg-accent px-4 py-1.5 text-sm font-medium text-accent-foreground">
-                Meet the Team
-              </span>
-              <h2 className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
-                Specialist Clinicians Leading Your Care
-              </h2>
-              <div className="mt-8 space-y-6">
-                <div className="flex gap-4">
-                  <div className="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-primary/10">
-                    <Stethoscope className="h-6 w-6 text-primary" />
-                  </div>
-                  <div>
-                    <h3 className="font-semibold text-foreground">
-                      Prof. Abhay Chopada, MS, FRCS
-                    </h3>
-                    <p className="text-sm text-muted-foreground">
-                      Consultant Gastrointestinal Surgeon with extensive experience 
-                      in digestive health and surgical innovation.
-                    </p>
-                  </div>
-                </div>
-                <div className="flex gap-4">
-                  <div className="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-primary/10">
-                    <Microscope className="h-6 w-6 text-primary" />
-                  </div>
-                  <div>
-                    <h3 className="font-semibold text-foreground">
-                      Dr. Rashmi Kulkarni
-                    </h3>
-                    <p className="text-sm text-muted-foreground">
-                      Microbiome Specialist with expertise in gut health analysis 
-                      and evidence-based interventions.
-                    </p>
-                  </div>
-                </div>
-              </div>
-              <Button asChild className="mt-8" variant="outline">
-                <Link to="/about">
-                  Learn More About Us
-                  <ArrowRight className="ml-2 h-4 w-4" />
-                </Link>
-              </Button>
+              <h3 className="text-xl">A stool microbiome test can</h3>
+              <ul className="mt-4 space-y-3">{can.map((c) => <li key={c} className="flex gap-3"><Check className="mt-1 h-5 w-5 shrink-0 text-accent" aria-hidden />{c}</li>)}</ul>
             </div>
-            <div className="relative">
-              <div className="aspect-square overflow-hidden rounded-2xl bg-gradient-to-br from-primary/20 to-accent">
-                <div className="flex h-full items-center justify-center">
-                  <div className="text-center p-8">
-                    <div className="mx-auto flex h-24 w-24 items-center justify-center rounded-full bg-primary/20">
-                      <Microscope className="h-12 w-12 text-primary" />
-                    </div>
-                    <p className="mt-6 text-lg font-medium text-foreground">
-                      Clinical Excellence in Microbiome Science
-                    </p>
-                  </div>
-                </div>
-              </div>
+            <div>
+              <h3 className="text-xl">It cannot</h3>
+              <ul className="mt-4 space-y-3">{cannot.map((c) => <li key={c} className="flex gap-3"><Minus className="mt-1 h-5 w-5 shrink-0 text-destructive" aria-hidden />{c}</li>)}</ul>
             </div>
           </div>
+          <Button asChild variant="link" className="mt-8 px-0"><Link to="/science">Read about the science and its limitations <ArrowRight className="ml-1 h-4 w-4" /></Link></Button>
         </div>
       </section>
 
-      {/* Services Overview */}
-      <section className="py-16 sm:py-24">
-        <div className="container">
-          <SectionHeader
-            badge="Our Services"
-            title="Comprehensive Microbiome Analysis"
-            description="A complete service package designed for meaningful health insights."
-          />
+      {/* Clinicians */}
+      <section className="container py-20 sm:py-28">
+        <p className="eyebrow">Your clinicians</p>
+        <h2 className="mt-4 text-3xl sm:text-4xl">Who you will see</h2>
+        <div className="mt-12 grid gap-10 md:grid-cols-2">
+          {clinicians.map((c) => (
+            <article key={c.slug} className="border-t-2 border-brass pt-6">
+              <h3 className="text-2xl">{c.name}</h3>
+              <p className="text-accent">{c.role}</p>
+              <p className="mt-4 text-muted-foreground">{c.summary}</p>
+            </article>
+          ))}
+        </div>
+        <Button asChild variant="link" className="mt-6 px-0"><Link to="/clinicians">Meet the clinicians <ArrowRight className="ml-1 h-4 w-4" /></Link></Button>
+      </section>
 
-          <div className="grid gap-8 lg:grid-cols-3">
-            {services.map((service, index) => (
-              <Card key={service.title} className="relative overflow-hidden">
-                <CardContent className="pt-6">
-                  <div className="mb-4 flex h-10 w-10 items-center justify-center rounded-full bg-primary text-lg font-bold text-primary-foreground">
-                    {index + 1}
-                  </div>
-                  <h3 className="text-lg font-semibold text-foreground">
-                    {service.title}
-                  </h3>
-                  <p className="mt-2 text-muted-foreground">
-                    {service.description}
-                  </p>
-                </CardContent>
-              </Card>
+      {/* FAQ */}
+      <section className="container pb-8">
+        <div className="grid gap-10 lg:grid-cols-[0.8fr_1.2fr]">
+          <div>
+            <p className="eyebrow">Practical questions</p>
+            <h2 className="mt-4 text-3xl sm:text-4xl">Before you get in touch</h2>
+            <Button asChild variant="link" className="mt-4 px-0"><Link to="/faq">All FAQs <ArrowRight className="ml-1 h-4 w-4" /></Link></Button>
+          </div>
+          <Accordion type="single" collapsible>
+            {faqs.map((f) => (
+              <AccordionItem key={f.q} value={f.q}>
+                <AccordionTrigger className="text-left text-lg">{f.q}</AccordionTrigger>
+                <AccordionContent className="text-base text-muted-foreground">{f.a}</AccordionContent>
+              </AccordionItem>
             ))}
-          </div>
-
-          <div className="mt-12 text-center">
-            <Button asChild size="lg">
-              <Link to="/services">
-                View Full Service Details
-                <ArrowRight className="ml-2 h-4 w-4" />
-              </Link>
-            </Button>
-          </div>
+          </Accordion>
         </div>
       </section>
 
-      {/* Our Standards */}
-      <section className="section-alt py-16 sm:py-24">
-        <div className="container">
-          <div className="mx-auto max-w-3xl">
-            <SectionHeader
-              badge="Our Standards"
-              title="What Sets Us Apart"
-              description="We adhere to the highest standards of ethical practice in microbiome analysis."
-            />
-
-            <div className="mt-8 space-y-4">
-              {[
-                "All testing supervised by qualified healthcare professionals",
-                "CLIA-certified laboratory partnerships",
-                "Transparent evidence communication",
-                "No supplement sales or conflicts of interest",
-                "Mandatory medical consultation before and after testing",
-                "Integration with existing medical care",
-              ].map((item) => (
-                <div key={item} className="flex items-start gap-3">
-                  <CheckCircle2 className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
-                  <span className="text-foreground">{item}</span>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* CTA Section */}
-      <section className="py-16 sm:py-24">
-        <div className="container">
-          <div className="rounded-2xl clinical-gradient p-8 text-center sm:p-12">
-            <BookOpen className="mx-auto h-12 w-12 text-primary-foreground/80" />
-            <h2 className="mt-4 text-2xl font-bold text-primary-foreground sm:text-3xl">
-              Ready to Explore Your Gut Health?
-            </h2>
-            <p className="mx-auto mt-4 max-w-xl text-primary-foreground/90">
-              Schedule a consultation to discuss whether microbiome analysis 
-              is right for your health journey.
-            </p>
-            <Button
-              asChild
-              size="lg"
-              variant="secondary"
-              className="mt-8"
-            >
-              <Link to="/contact">
-                Book Your Consultation
-                <ArrowRight className="ml-2 h-4 w-4" />
-              </Link>
-            </Button>
-          </div>
-        </div>
-      </section>
+      <CtaBand location="home_final" />
     </Layout>
   );
 }

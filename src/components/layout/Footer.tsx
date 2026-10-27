@@ -1,117 +1,47 @@
 import { Link } from "react-router-dom";
-import { Microscope, Mail, Phone, MapPin } from "lucide-react";
+import { site, ctaHref, ctaLabel } from "@/config/site";
+import { track } from "@/lib/analytics";
+
+const groups = [
+  { title: "Care", links: [{ n: "Services", h: "/services" }, { n: "Fees", h: "/fees" }, { n: "Clinicians", h: "/clinicians" }, { n: "For healthcare professionals", h: "/providers" }] },
+  { title: "Understanding", links: [{ n: "Microbiome testing", h: "/testing" }, { n: "The science", h: "/science" }, { n: "FAQs", h: "/faq" }, { n: "About the clinic", h: "/about" }] },
+  { title: "Information", links: [{ n: "Contact", h: "/contact" }, { n: "Privacy", h: "/privacy" }, { n: "Terms & cancellations", h: "/terms" }, { n: "Accessibility", h: "/accessibility" }] },
+];
 
 export function Footer() {
   return (
-    <footer className="border-t border-border bg-secondary/30">
-      <div className="container py-12 md:py-16">
-        <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-4">
-          {/* Brand */}
-          <div className="space-y-4">
-            <Link to="/" className="flex items-center gap-2">
-              <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-primary">
-                <Microscope className="h-5 w-5 text-primary-foreground" />
-              </div>
-              <span className="font-semibold text-foreground">
-                Microbiome Clinic
-              </span>
+    <footer className="bg-forest text-ivory">
+      <div className="container py-16">
+        <div className="grid gap-12 lg:grid-cols-[1.4fr_repeat(3,1fr)]">
+          <div>
+            <p className="font-heading text-2xl">{site.brandName}</p>
+            <p className="mt-2 text-sm text-ivory/75">{site.operatorName} · {site.location.city}</p>
+            <ul className="mt-6 space-y-2 text-sm">
+              <li><a className="text-ivory/90 underline-offset-4 hover:underline" href={site.contact.phoneHref} onClick={() => track("phone_click", "footer")}>{site.contact.phoneDisplay}</a></li>
+              <li><a className="text-ivory/90 underline-offset-4 hover:underline" href={`mailto:${site.contact.email}`} onClick={() => track("email_click", "footer")}>{site.contact.email}</a></li>
+            </ul>
+            <Link to={ctaHref} onClick={() => track("cta_click", "footer")} className="mt-6 inline-flex min-h-11 items-center rounded-md bg-ivory px-5 text-sm font-medium text-forest hover:bg-ivory/90">
+              {ctaLabel}
             </Link>
-            <p className="text-sm text-muted-foreground">
-              Evidence-based microbiome analysis led by specialist clinicians. 
-              Integrating cutting-edge research with standard medical care.
-            </p>
           </div>
-
-          {/* Quick Links */}
-          <div>
-            <h3 className="mb-4 font-semibold text-foreground">Quick Links</h3>
-            <ul className="space-y-2 text-sm">
-              <li>
-                <Link to="/about" className="text-muted-foreground hover:text-primary transition-colors">
-                  About the Clinic
-                </Link>
-              </li>
-              <li>
-                <Link to="/services" className="text-muted-foreground hover:text-primary transition-colors">
-                  Our Services
-                </Link>
-              </li>
-              <li>
-                <Link to="/science" className="text-muted-foreground hover:text-primary transition-colors">
-                  The Science
-                </Link>
-              </li>
-              <li>
-                <Link to="/faq" className="text-muted-foreground hover:text-primary transition-colors">
-                  FAQ
-                </Link>
-              </li>
-              <li>
-                <Link to="/contact" className="text-muted-foreground hover:text-primary transition-colors">
-                  Contact Us
-                </Link>
-              </li>
-            </ul>
-          </div>
-
-          {/* For Professionals */}
-          <div>
-            <h3 className="mb-4 font-semibold text-foreground">For Professionals</h3>
-            <ul className="space-y-2 text-sm">
-              <li>
-                <Link to="/providers" className="text-muted-foreground hover:text-primary transition-colors">
-                  For Healthcare Providers
-                </Link>
-              </li>
-              <li>
-                <Link to="/research" className="text-muted-foreground hover:text-primary transition-colors">
-                  Research & Publications
-                </Link>
-              </li>
-              <li>
-                <Link to="/resources" className="text-muted-foreground hover:text-primary transition-colors">
-                  Resources
-                </Link>
-              </li>
-            </ul>
-          </div>
-
-          {/* Contact */}
-          <div>
-            <h3 className="mb-4 font-semibold text-foreground">Contact</h3>
-            <ul className="space-y-3 text-sm">
-              <li className="flex items-start gap-2">
-                <MapPin className="mt-0.5 h-4 w-4 text-primary" />
-                <span className="text-muted-foreground">
-                  The Microbiome Clinic<br />
-                  Gastrosurgery UK, London
-                </span>
-              </li>
-              <li className="flex items-center gap-2">
-                <Phone className="h-4 w-4 text-primary" />
-                <a href="tel:02070999333" className="text-muted-foreground hover:text-primary transition-colors">020 7099 9333</a>
-              </li>
-              <li className="flex items-center gap-2">
-                <Mail className="h-4 w-4 text-primary" />
-                <a href="mailto:gastrosurgery@gmail.com" className="text-muted-foreground hover:text-primary transition-colors">gastrosurgery@gmail.com</a>
-              </li>
-            </ul>
-          </div>
-        </div>
-
-        {/* Bottom Bar */}
-        <div className="mt-12 border-t border-border pt-8">
-          <div className="flex flex-col items-center justify-between gap-4 text-sm text-muted-foreground md:flex-row">
-            <p>© {new Date().getFullYear()} Microbiome Clinic. All rights reserved.</p>
-            <div className="flex gap-6">
-              <Link to="/privacy" className="hover:text-primary transition-colors">
-                Privacy Policy
-              </Link>
-              <Link to="/terms" className="hover:text-primary transition-colors">
-                Terms of Service
-              </Link>
+          {groups.map((g) => (
+            <div key={g.title}>
+              <p className="text-xs font-semibold uppercase tracking-[0.18em] text-brass">{g.title}</p>
+              <ul className="mt-4 space-y-3 text-sm">
+                {g.links.map((l) => (
+                  <li key={l.h}><Link to={l.h} className="text-ivory/85 hover:text-ivory hover:underline underline-offset-4">{l.n}</Link></li>
+                ))}
+              </ul>
             </div>
-          </div>
+          ))}
+        </div>
+        <div className="mt-14 border-t border-ivory/15 pt-8 text-sm text-ivory/70">
+          <p className="max-w-3xl">
+            Information on this website is general and does not replace advice from your own doctor. Microbiome
+            testing has limited established clinical use and does not replace standard medical assessment. If you
+            have urgent symptoms, contact your GP, NHS 111, or in an emergency call 999.
+          </p>
+          <p className="mt-4">© {new Date().getFullYear()} {site.brandName}</p>
         </div>
       </div>
     </footer>
