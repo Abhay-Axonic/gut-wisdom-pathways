@@ -14,7 +14,45 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      consultation_requests: {
+        Row: {
+          appointment_preference: string
+          created_at: string
+          email: string | null
+          full_name: string
+          id: string
+          marketing_opt_in: boolean
+          message: string | null
+          phone: string | null
+          preferred_contact: string
+          status: string
+        }
+        Insert: {
+          appointment_preference: string
+          created_at?: string
+          email?: string | null
+          full_name: string
+          id?: string
+          marketing_opt_in?: boolean
+          message?: string | null
+          phone?: string | null
+          preferred_contact: string
+          status?: string
+        }
+        Update: {
+          appointment_preference?: string
+          created_at?: string
+          email?: string | null
+          full_name?: string
+          id?: string
+          marketing_opt_in?: boolean
+          message?: string | null
+          phone?: string | null
+          preferred_contact?: string
+          status?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
