@@ -7,7 +7,7 @@ export const site = {
   brandName: "Microbiome Clinic",
   operatorName: "Gastrosurgery UK",
   /** Production origin used for canonical URLs and the sitemap (no trailing slash). */
-  productionUrl: "https://gut-wisdom-pathways.lovable.app",
+  productionUrl: "https://microbiome.gastrosurgery.co.uk",
   locale: "en_GB",
 
   contact: {
