@@ -9,7 +9,7 @@ import { Mail, MapPin, Phone } from "lucide-react";
 export default function ContactPage() {
   return (
     <Layout hideMobileCta>
-      <Seo title="Contact and consultation requests" description={`Request a consultation with ${site.brandName}, London. Call ${site.contact.phoneDisplay} or send a short request online.`} path="/contact" breadcrumbs={[{ name: "Contact", path: "/contact" }]} />
+      <Seo path="/contact" breadcrumbs={[{ name: "Contact", path: "/contact" }]} />
       <PageHero eyebrow="Contact" title="Request a consultation">
         <p>Send a short request and we will contact you to arrange a time. You can also call or email us.</p>
       </PageHero>

@@ -4,19 +4,21 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route, Navigate, useLocation } from "react-router-dom";
 import { HelmetProvider } from "react-helmet-async";
-import { useEffect } from "react";
+import { useEffect, lazy, Suspense } from "react";
 import HomePage from "./pages/HomePage";
-import AboutPage from "./pages/AboutPage";
-import ServicesPage from "./pages/ServicesPage";
-import FeesPage from "./pages/FeesPage";
-import CliniciansPage from "./pages/CliniciansPage";
-import TestingPage from "./pages/TestingPage";
-import SciencePage from "./pages/SciencePage";
-import ProvidersPage from "./pages/ProvidersPage";
-import FAQPage from "./pages/FAQPage";
-import ContactPage from "./pages/ContactPage";
-import { PrivacyPage, TermsPage, AccessibilityPage } from "./pages/InfoPages";
-import NotFound from "./pages/NotFound";
+const AboutPage = lazy(() => import("./pages/AboutPage"));
+const ServicesPage = lazy(() => import("./pages/ServicesPage"));
+const FeesPage = lazy(() => import("./pages/FeesPage"));
+const CliniciansPage = lazy(() => import("./pages/CliniciansPage"));
+const TestingPage = lazy(() => import("./pages/TestingPage"));
+const SciencePage = lazy(() => import("./pages/SciencePage"));
+const ProvidersPage = lazy(() => import("./pages/ProvidersPage"));
+const FAQPage = lazy(() => import("./pages/FAQPage"));
+const ContactPage = lazy(() => import("./pages/ContactPage"));
+const PrivacyPage = lazy(() => import("./pages/InfoPages").then((m) => ({ default: m.PrivacyPage })));
+const TermsPage = lazy(() => import("./pages/InfoPages").then((m) => ({ default: m.TermsPage })));
+const AccessibilityPage = lazy(() => import("./pages/InfoPages").then((m) => ({ default: m.AccessibilityPage })));
+const NotFound = lazy(() => import("./pages/NotFound"));
 
 const queryClient = new QueryClient();
 
@@ -36,6 +38,7 @@ const App = () => (
         <Sonner />
         <BrowserRouter>
           <ScrollToTop />
+          <Suspense fallback={<div className="min-h-screen" />}>
           <Routes>
             <Route path="/" element={<HomePage />} />
             <Route path="/about" element={<AboutPage />} />
@@ -55,6 +58,7 @@ const App = () => (
             <Route path="/resources" element={<Navigate to="/testing" replace />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
+          </Suspense>
         </BrowserRouter>
       </TooltipProvider>
     </QueryClientProvider>

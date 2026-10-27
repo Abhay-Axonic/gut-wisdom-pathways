@@ -45,8 +45,6 @@ export default function HomePage() {
   return (
     <Layout>
       <Seo
-        title={`${site.brandName} London | Specialist-led gut health assessment`}
-        description="Specialist-led digestive health consultations in London, with honest, evidence-based guidance on what microbiome science and testing can and cannot tell you."
         path="/"
         jsonLd={[
           {

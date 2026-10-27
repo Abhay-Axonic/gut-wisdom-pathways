@@ -1,0 +1,438 @@
+{
+  "/": {
+    "title": "Microbiome Clinic London | Specialist-led gut health assessment",
+    "description": "Specialist-led digestive health consultations in London, with honest, evidence-based guidance on what microbiome science and testing can and cannot tell you.",
+    "jsonLd": [
+      {
+        "@context": "https://schema.org",
+        "@type": "MedicalClinic",
+        "name": "Microbiome Clinic",
+        "url": "https://gut-wisdom-pathways.lovable.app",
+        "telephone": "+44 20 7099 9333",
+        "email": "gastrosurgery@gmail.com",
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "London",
+          "addressCountry": "GB"
+        },
+        "medicalSpecialty": "Gastroenterologic",
+        "employee": [
+          {
+            "@type": "Person",
+            "name": "Prof. Abhay Chopada",
+            "jobTitle": "Consultant Gastrointestinal Surgeon"
+          },
+          {
+            "@type": "Person",
+            "name": "Dr Rashmi Kulkarni",
+            "jobTitle": "Microbiome Specialist"
+          }
+        ]
+      }
+    ]
+  },
+  "/services": {
+    "title": "Services — specialist digestive health consultation | Microbiome Clinic",
+    "description": "What happens during a specialist-led gut health consultation at our London clinic: assessment, an honest view of testing, and a clear plan.",
+    "jsonLd": [
+      {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://gut-wisdom-pathways.lovable.app/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Services",
+            "item": "https://gut-wisdom-pathways.lovable.app/services"
+          }
+        ]
+      }
+    ]
+  },
+  "/fees": {
+    "title": "Fees | Microbiome Clinic",
+    "description": "Consultation fees at our London gut health clinic, what is included, and what may cost extra.",
+    "jsonLd": [
+      {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://gut-wisdom-pathways.lovable.app/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Fees",
+            "item": "https://gut-wisdom-pathways.lovable.app/fees"
+          }
+        ]
+      }
+    ]
+  },
+  "/clinicians": {
+    "title": "Clinicians | Microbiome Clinic",
+    "description": "Meet the clinicians at Microbiome Clinic, London: Prof. Abhay Chopada, Consultant Gastrointestinal Surgeon; Dr Rashmi Kulkarni, Microbiome Specialist.",
+    "jsonLd": [
+      {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "Prof. Abhay Chopada",
+        "jobTitle": "Consultant Gastrointestinal Surgeon",
+        "worksFor": {
+          "@type": "MedicalClinic",
+          "name": "Microbiome Clinic",
+          "url": "https://gut-wisdom-pathways.lovable.app"
+        }
+      },
+      {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "Dr Rashmi Kulkarni",
+        "jobTitle": "Microbiome Specialist",
+        "worksFor": {
+          "@type": "MedicalClinic",
+          "name": "Microbiome Clinic",
+          "url": "https://gut-wisdom-pathways.lovable.app"
+        }
+      },
+      {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://gut-wisdom-pathways.lovable.app/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Clinicians",
+            "item": "https://gut-wisdom-pathways.lovable.app/clinicians"
+          }
+        ]
+      }
+    ]
+  },
+  "/testing": {
+    "title": "Microbiome testing — benefits and limitations | Microbiome Clinic",
+    "description": "What a stool microbiome test measures, how methods differ, and what it can and cannot tell you. An honest guide from a London specialist clinic.",
+    "jsonLd": [
+      {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://gut-wisdom-pathways.lovable.app/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Microbiome testing",
+            "item": "https://gut-wisdom-pathways.lovable.app/testing"
+          }
+        ]
+      }
+    ]
+  },
+  "/science": {
+    "title": "The science and its limitations | Microbiome Clinic",
+    "description": "A balanced summary of gut microbiome research: where evidence is emerging, where it is established, and why routine testing has limited clinical use.",
+    "jsonLd": [
+      {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://gut-wisdom-pathways.lovable.app/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "The science",
+            "item": "https://gut-wisdom-pathways.lovable.app/science"
+          }
+        ]
+      }
+    ]
+  },
+  "/faq": {
+    "title": "Frequently asked questions | Microbiome Clinic",
+    "description": "Answers about consultations, microbiome testing, fees and practical arrangements at our London gut health clinic.",
+    "jsonLd": [
+      {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "Do I need a referral?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "No. You can request a consultation yourself."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "What happens at the first appointment?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "A specialist reviews your symptoms, history, medicines and previous investigations, then explains their view and the sensible next steps."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Where are appointments held?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Appointments are based in London. We confirm the arrangements when we contact you."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Will you share information with my GP?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Only with your permission. Keeping your GP informed usually helps your care stay joined up."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Can I buy a microbiome test from you?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Not at present. We focus on assessment and helping you decide whether a test is worthwhile."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Can a microbiome test diagnose my condition?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "No. Microbiome tests cannot diagnose IBS, inflammatory bowel disease or cancer. Standard medical tests are needed for diagnosis."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Does sequencing measure inflammation?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "No. Sequencing describes microbes. Inflammation markers such as faecal calprotectin are separate tests."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "How much does a consultation cost?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Please request our current fees. We confirm the fee before anything is booked."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Will my insurer pay?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "We cannot guarantee insurance cover. Please check with your insurer before booking."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Do you sell supplements?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "No. We do not sell supplements or receive commission on products."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "What if my symptoms are urgent?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Contact your GP or NHS 111. In an emergency, call 999."
+            }
+          }
+        ]
+      },
+      {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://gut-wisdom-pathways.lovable.app/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "FAQs",
+            "item": "https://gut-wisdom-pathways.lovable.app/faq"
+          }
+        ]
+      }
+    ]
+  },
+  "/about": {
+    "title": "About the clinic | Microbiome Clinic",
+    "description": "About Microbiome Clinic: a specialist-led London clinic offering careful, evidence-based guidance on digestive health and the gut microbiome.",
+    "jsonLd": [
+      {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://gut-wisdom-pathways.lovable.app/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "About",
+            "item": "https://gut-wisdom-pathways.lovable.app/about"
+          }
+        ]
+      }
+    ]
+  },
+  "/contact": {
+    "title": "Contact and consultation requests | Microbiome Clinic",
+    "description": "Request a consultation with Microbiome Clinic, London. Call 020 7099 9333 or send a short request online.",
+    "jsonLd": [
+      {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://gut-wisdom-pathways.lovable.app/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Contact",
+            "item": "https://gut-wisdom-pathways.lovable.app/contact"
+          }
+        ]
+      }
+    ]
+  },
+  "/providers": {
+    "title": "For healthcare professionals | Microbiome Clinic",
+    "description": "Information for GPs and specialists considering referring a patient to Microbiome Clinic, London.",
+    "jsonLd": [
+      {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://gut-wisdom-pathways.lovable.app/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "For healthcare professionals",
+            "item": "https://gut-wisdom-pathways.lovable.app/providers"
+          }
+        ]
+      }
+    ]
+  },
+  "/privacy": {
+    "title": "Privacy information | Microbiome Clinic",
+    "description": "How Microbiome Clinic uses the information you send through this website.",
+    "jsonLd": [
+      {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://gut-wisdom-pathways.lovable.app/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Privacy",
+            "item": "https://gut-wisdom-pathways.lovable.app/privacy"
+          }
+        ]
+      }
+    ]
+  },
+  "/terms": {
+    "title": "Terms and cancellations | Microbiome Clinic",
+    "description": "Appointment terms and cancellation arrangements at Microbiome Clinic.",
+    "jsonLd": [
+      {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://gut-wisdom-pathways.lovable.app/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Terms",
+            "item": "https://gut-wisdom-pathways.lovable.app/terms"
+          }
+        ]
+      }
+    ]
+  },
+  "/accessibility": {
+    "title": "Accessibility | Microbiome Clinic",
+    "description": "Accessibility of the Microbiome Clinic website and how to request information in another format.",
+    "jsonLd": [
+      {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://gut-wisdom-pathways.lovable.app/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Accessibility",
+            "item": "https://gut-wisdom-pathways.lovable.app/accessibility"
+          }
+        ]
+      }
+    ]
+  }
+}

@@ -1,18 +1,24 @@
 import { Helmet } from "react-helmet-async";
 import { site, isProductionHost } from "@/config/site";
+import routeMeta from "@/config/routeMeta.json";
+
+const meta = routeMeta as Record<string, { title: string; description: string }>;
 
 interface SeoProps {
-  title: string;
-  description: string;
+  /** Defaults to src/config/routeMeta.json (also used for prerendered HTML). */
+  title?: string;
+  description?: string;
   path: string;
   breadcrumbs?: { name: string; path: string }[];
   jsonLd?: object[];
   noindex?: boolean;
 }
 
-export function Seo({ title, description, path, breadcrumbs, jsonLd = [], noindex }: SeoProps) {
+export function Seo({ title: titleProp, description: descProp, path, breadcrumbs, jsonLd = [], noindex }: SeoProps) {
   const url = `${site.productionUrl}${path === "/" ? "/" : path}`;
-  const fullTitle = path === "/" ? title : `${title} | ${site.brandName}`;
+  const fromMeta = meta[path];
+  const description = descProp ?? fromMeta?.description ?? "";
+  const fullTitle = titleProp ? (path === "/" ? titleProp : `${titleProp} | ${site.brandName}`) : fromMeta?.title ?? site.brandName;
   const blockIndex = noindex || !isProductionHost();
   const schemas = [...jsonLd];
   if (breadcrumbs?.length) {

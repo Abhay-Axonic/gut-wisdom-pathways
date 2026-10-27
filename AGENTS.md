@@ -8,3 +8,5 @@
 - Analytics events never include personal data and only fire after consent when a provider is configured.
 - Section reveals run via `useSectionReveal` in Layout: content is visible by default and only hidden after JS adds `js-reveal`, with a timeout safety net and reduced-motion opt-out — text must never be stuck invisible.
 - Heading sizes come from the global type scale in `src/index.css`; don't add text-size utilities to h1–h3.
+- Page titles/descriptions live in `src/config/routeMeta.json`; `scripts/prerender-head.mjs` (run after `vite build`) writes per-route static HTML heads from it so crawlers see them without JS. Add new routes to this file and the sitemap script together.
+- Route pages other than Home are lazy-loaded to keep the first download small.

@@ -22,8 +22,6 @@ export default function FeesPage() {
   return (
     <Layout>
       <Seo
-        title="Fees"
-        description="Consultation fees at our London gut health clinic, what is included, and what may cost extra."
         path="/fees"
         breadcrumbs={[{ name: "Fees", path: "/fees" }]}
       />

@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Link, NavLink, useLocation } from "react-router-dom";
 import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -18,11 +18,14 @@ export const navItems = [
 
 export function Navbar() {
   const [open, setOpen] = useState(false);
+  const toggleRef = useRef<HTMLButtonElement>(null);
   const { pathname } = useLocation();
   useEffect(() => setOpen(false), [pathname]);
   useEffect(() => {
     document.body.style.overflow = open ? "hidden" : "";
-    const onKey = (e: KeyboardEvent) => e.key === "Escape" && setOpen(false);
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape" && open) { setOpen(false); toggleRef.current?.focus(); }
+    };
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
   }, [open]);
@@ -54,6 +57,7 @@ export function Navbar() {
           </Button>
         </div>
         <button
+          ref={toggleRef}
           type="button"
           className="-mr-2 inline-flex h-11 w-11 items-center justify-center rounded-md lg:hidden"
           aria-expanded={open}

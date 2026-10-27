@@ -9,7 +9,6 @@ export default function CliniciansPage() {
   return (
     <Layout>
       <Seo
-        title="Clinicians"
         description={`Meet the clinicians at ${site.brandName}, London: ${clinicians.map((c) => `${c.name}, ${c.role}`).join("; ")}.`}
         path="/clinicians"
         breadcrumbs={[{ name: "Clinicians", path: "/clinicians" }]}
