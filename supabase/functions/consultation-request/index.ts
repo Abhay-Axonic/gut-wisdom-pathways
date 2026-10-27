@@ -59,5 +59,22 @@ Deno.serve(async (req) => {
     console.error("insert_failed", error?.code);
     return json({ ok: false, error: "storage_failed" }, 500);
   }
-  return json({ ok: true, reference: data.id.slice(0, 8).toUpperCase() });
+  const reference = data.id.slice(0, 8).toUpperCase();
+
+  // Staff notification (prepared, inactive until configured). Sends only the reference and a
+  // link to the secure location — never the patient's name, contact details or message.
+  const recipient = Deno.env.get("CONSULTATION_NOTIFY_EMAIL");
+  if (recipient) {
+    const { error: notifyError } = await supabase.functions.invoke("send-transactional-email", {
+      body: {
+        templateName: "new-consultation-request",
+        recipientEmail: recipient,
+        idempotencyKey: `consultation-notify-${data.id}`,
+        templateData: { reference, reviewUrl: Deno.env.get("CONSULTATION_REVIEW_URL") ?? "" },
+      },
+    });
+    if (notifyError) console.error("notify_failed", reference);
+  }
+
+  return json({ ok: true, reference });
 });
