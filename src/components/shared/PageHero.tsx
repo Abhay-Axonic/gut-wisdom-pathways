@@ -8,12 +8,13 @@ import { track } from "@/lib/analytics";
 export function PageHero({ eyebrow, title, children }: { eyebrow: string; title: string; children?: ReactNode }) {
   return (
     <section className="relative overflow-hidden border-b border-border/70">
-      <Leaf className="pointer-events-none absolute -right-6 -top-4 hidden h-48 w-48 opacity-70 md:block" />
-      <div className="container py-16 sm:py-24">
+      <Leaf className="pointer-events-none absolute -right-6 -top-4 hidden h-44 w-44 opacity-70 md:block" />
+      <MicrobeMotif className="pointer-events-none absolute bottom-6 right-24 hidden h-10 w-28 opacity-80 lg:block" />
+      <div className="container py-12 sm:py-16 lg:py-20">
         <div className="max-w-3xl fade-up">
           <p className="eyebrow">{eyebrow}</p>
           <h1 className="mt-4">{title}</h1>
-          {children && <div className="mt-6 text-lg text-muted-foreground sm:text-xl">{children}</div>}
+          {children && <div className="lede measure mt-5">{children}</div>}
         </div>
       </div>
     </section>
