@@ -39,7 +39,9 @@ export function ContactForm() {
       const errs: Record<string, string> = {};
       parsed.error.issues.forEach((i) => (errs[String(i.path[0])] ??= i.message));
       setErrors(errs);
-      document.getElementById(Object.keys(errs)[0])?.focus();
+      const first = document.getElementById(Object.keys(errs)[0]);
+      first?.focus({ preventScroll: true });
+      first?.scrollIntoView({ block: "center" });
       return;
     }
     setErrors({});
