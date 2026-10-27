@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://gut-wisdom-pathways.lovable.app/sitemap.xml
+Sitemap: https://microbiome.gastrosurgery.co.uk/sitemap.xml
