@@ -65,7 +65,7 @@ export function ContactForm() {
     return (
       <div role="status" className="rounded-2xl border border-accent/40 bg-secondary/60 p-8">
         <CheckCircle2 className="h-8 w-8 text-accent" aria-hidden />
-        <h3 className="mt-4 text-2xl">Thank you — your request has been received</h3>
+        <h3 className="mt-4">Thank you — your request has been received</h3>
         <p className="mt-3 text-muted-foreground">
           Your reference is <strong className="text-foreground">{reference}</strong>. A member of the team will
           contact you using your preferred method{site.contact.responseTime ? ` ${site.contact.responseTime}` : ""}.

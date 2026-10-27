@@ -42,7 +42,7 @@ export default function FAQPage() {
       <section className="container max-w-4xl py-16">
         {groups.map((g) => (
           <div key={g.t} className="mb-14">
-            <h2 className="text-2xl sm:text-3xl">{g.t}</h2>
+            <h2 className="">{g.t}</h2>
             <Accordion type="multiple" className="mt-4">
               {g.items.map((f) => (
                 <AccordionItem key={f.q} value={f.q}>

@@ -26,7 +26,7 @@ export function Footer() {
           </div>
           {groups.map((g) => (
             <div key={g.title}>
-              <p className="text-xs font-semibold uppercase tracking-[0.18em] text-brass">{g.title}</p>
+              <p className="text-sm font-semibold uppercase tracking-[0.1em] text-brass-light">{g.title}</p>
               <ul className="mt-4 space-y-3 text-sm">
                 {g.links.map((l) => (
                   <li key={l.h}><Link to={l.h} className="text-ivory/85 hover:text-ivory hover:underline underline-offset-4">{l.n}</Link></li>

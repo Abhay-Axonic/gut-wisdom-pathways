@@ -15,7 +15,7 @@ export default function ContactPage() {
       </PageHero>
       <section className="container grid gap-14 py-16 lg:grid-cols-[1.3fr_0.7fr]">
         <div id="request" className="scroll-mt-28">
-          <h2 className="mb-8 text-3xl">Your details</h2>
+          <h2 className="mb-8">Your details</h2>
           <ContactForm />
         </div>
         <aside className="space-y-8 lg:border-l lg:border-border lg:pl-12">

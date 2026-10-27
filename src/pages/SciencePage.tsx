@@ -24,12 +24,12 @@ export default function SciencePage() {
         <p>We separate what research has found from what is proven to help patients. Here is where things stand.</p>
       </PageHero>
       <section className="container py-16">
-        <h2 className="text-3xl">Areas of active research</h2>
+        <h2 className="">Areas of active research</h2>
         <p className="mt-3 max-w-2xl text-muted-foreground">These are fields of study, not services or promised outcomes.</p>
         <div className="mt-10 grid gap-x-12 gap-y-10 md:grid-cols-2">
           {areas.map((a) => (
             <article key={a.t} className="border-t border-border pt-6">
-              <h3 className="text-2xl">{a.t}</h3>
+              <h3 className="">{a.t}</h3>
               <p className="mt-3 text-muted-foreground">{a.d}</p>
             </article>
           ))}

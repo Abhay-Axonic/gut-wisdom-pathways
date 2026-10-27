@@ -12,7 +12,7 @@ export function PageHero({ eyebrow, title, children }: { eyebrow: string; title:
       <div className="container py-16 sm:py-24">
         <div className="max-w-3xl fade-up">
           <p className="eyebrow">{eyebrow}</p>
-          <h1 className="mt-4 text-4xl sm:text-5xl lg:text-6xl">{title}</h1>
+          <h1 className="mt-4">{title}</h1>
           {children && <div className="mt-6 text-lg text-muted-foreground sm:text-xl">{children}</div>}
         </div>
       </div>
@@ -30,7 +30,7 @@ export function CtaBand({
       <div className="relative overflow-hidden rounded-3xl bg-forest px-6 py-14 text-ivory sm:px-14">
         <MicrobeField className="pointer-events-none absolute -right-24 -top-24 h-96 w-96 opacity-25" />
         <div className="relative max-w-2xl">
-          <h2 className="text-3xl text-ivory sm:text-4xl">{title}</h2>
+          <h2 className=" text-ivory">{title}</h2>
           <p className="mt-4 text-ivory/80">{text}</p>
           <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:items-center">
             <Button asChild size="lg" variant="secondary" onClick={() => track("cta_click", location)}>

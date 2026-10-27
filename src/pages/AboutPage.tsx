@@ -27,13 +27,13 @@ export default function AboutPage() {
         </p>
       </PageHero>
       <section className="container py-20">
-        <h2 className="text-3xl sm:text-4xl">How we practise</h2>
+        <h2 className="">How we practise</h2>
         <div className="mt-12 grid gap-10 sm:grid-cols-2">
           {principles.map((p, i) => (
             <div key={p.t} className="flex gap-6">
               <span className="font-heading text-3xl text-brass">0{i + 1}</span>
               <div>
-                <h3 className="text-xl">{p.t}</h3>
+                <h3 className="">{p.t}</h3>
                 <p className="mt-2 text-muted-foreground">{p.d}</p>
               </div>
             </div>

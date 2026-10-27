@@ -68,7 +68,7 @@ export default function HomePage() {
         <div className="container grid items-center gap-12 py-16 sm:py-24 lg:grid-cols-[1.15fr_0.85fr] lg:py-28">
           <div className="fade-up">
             <p className="eyebrow">{site.brandName} · London</p>
-            <h1 className="mt-5 text-[2.6rem] sm:text-6xl lg:text-7xl">
+            <h1 className="mt-5 text-[2.6rem]">
               Understand your gut health with <em className="text-accent">specialist-led</em> care.
             </h1>
             <p className="mt-6 max-w-xl text-lg text-muted-foreground sm:text-xl">
@@ -108,7 +108,7 @@ export default function HomePage() {
         <div className="grid gap-12 lg:grid-cols-[0.9fr_1.1fr]">
           <div>
             <p className="eyebrow">Who we see</p>
-            <h2 className="mt-4 text-3xl sm:text-4xl">A consultation may suit you if you have…</h2>
+            <h2 className="mt-4">A consultation may suit you if you have…</h2>
             <p className="mt-5 text-muted-foreground">
               We cannot promise to resolve symptoms, but we can give you a careful specialist opinion and a clear
               explanation of the evidence.
@@ -128,13 +128,13 @@ export default function HomePage() {
       {/* Steps */}
       <section id="how-it-works" className="scroll-mt-24 bg-forest text-ivory">
         <div className="container py-20 sm:py-28">
-          <p className="text-xs font-semibold uppercase tracking-[0.18em] text-brass">How it works</p>
-          <h2 className="mt-4 max-w-2xl text-3xl text-ivory sm:text-4xl">Consultation first. Testing only if it is appropriate.</h2>
+          <p className="text-sm font-semibold uppercase tracking-[0.1em] text-brass-light">How it works</p>
+          <h2 className="mt-4 max-w-2xl text-ivory">Consultation first. Testing only if it is appropriate.</h2>
           <ol className="mt-14 grid gap-10 md:grid-cols-2 lg:grid-cols-4">
             {steps.map((s, i) => (
               <li key={s.t} className="border-t border-ivory/25 pt-6">
-                <span className="font-heading text-4xl text-brass">0{i + 1}</span>
-                <h3 className="mt-3 text-xl text-ivory">{s.t}</h3>
+                <span className="font-heading text-4xl text-brass-light">0{i + 1}</span>
+                <h3 className="mt-3 text-ivory">{s.t}</h3>
                 <p className="mt-2 text-ivory/75">{s.d}</p>
               </li>
             ))}
@@ -147,7 +147,7 @@ export default function HomePage() {
         <div className="grid gap-10 lg:grid-cols-2">
           <div className="rounded-3xl border border-border bg-card p-8 shadow-soft sm:p-10">
             <p className="eyebrow">Available now</p>
-            <h2 className="mt-3 text-3xl">Specialist consultation</h2>
+            <h2 className="mt-3">Specialist consultation</h2>
             <p className="mt-4 text-muted-foreground">
               A consultant-led assessment of your digestive health, a review of previous investigations, and a clear
               explanation of next steps. We confirm appointment arrangements with you when we get in touch.
@@ -159,7 +159,7 @@ export default function HomePage() {
           </div>
           <div className="rounded-3xl border border-dashed border-border p-8 sm:p-10">
             <p className="eyebrow">About testing</p>
-            <h2 className="mt-3 text-3xl">Microbiome testing</h2>
+            <h2 className="mt-3">Microbiome testing</h2>
             <p className="mt-4 text-muted-foreground">
               {site.services.testingAvailable
                 ? "Where it is appropriate and agreed with you, testing may be arranged after your consultation."
@@ -175,7 +175,7 @@ export default function HomePage() {
         <div className="container py-20 sm:py-28">
           <div className="max-w-2xl">
             <p className="eyebrow">An honest view of the evidence</p>
-            <h2 className="mt-4 text-3xl sm:text-4xl">Microbiome science is promising — and still early.</h2>
+            <h2 className="mt-4">Microbiome science is promising — and still early.</h2>
             <p className="mt-5 text-muted-foreground">
               Research links the gut microbiome with many conditions, but for most people routine microbiome testing
               has limited established clinical use. It does not replace standard medical assessment, investigations or
@@ -184,11 +184,11 @@ export default function HomePage() {
           </div>
           <div className="mt-12 grid gap-8 md:grid-cols-2">
             <div>
-              <h3 className="text-xl">A stool microbiome test can</h3>
+              <h3 className="">A stool microbiome test can</h3>
               <ul className="mt-4 space-y-3">{can.map((c) => <li key={c} className="flex gap-3"><Check className="mt-1 h-5 w-5 shrink-0 text-accent" aria-hidden />{c}</li>)}</ul>
             </div>
             <div>
-              <h3 className="text-xl">It cannot</h3>
+              <h3 className="">It cannot</h3>
               <ul className="mt-4 space-y-3">{cannot.map((c) => <li key={c} className="flex gap-3"><Minus className="mt-1 h-5 w-5 shrink-0 text-destructive" aria-hidden />{c}</li>)}</ul>
             </div>
           </div>
@@ -199,11 +199,11 @@ export default function HomePage() {
       {/* Clinicians */}
       <section className="container py-20 sm:py-28">
         <p className="eyebrow">Your clinicians</p>
-        <h2 className="mt-4 text-3xl sm:text-4xl">Who you will see</h2>
+        <h2 className="mt-4">Who you will see</h2>
         <div className="mt-12 grid gap-10 md:grid-cols-2">
           {clinicians.map((c) => (
             <article key={c.slug} className="border-t-2 border-brass pt-6">
-              <h3 className="text-2xl">{c.name}</h3>
+              <h3 className="">{c.name}</h3>
               <p className="text-accent">{c.role}</p>
               <p className="mt-4 text-muted-foreground">{c.summary}</p>
             </article>
@@ -217,7 +217,7 @@ export default function HomePage() {
         <div className="grid gap-10 lg:grid-cols-[0.8fr_1.2fr]">
           <div>
             <p className="eyebrow">Practical questions</p>
-            <h2 className="mt-4 text-3xl sm:text-4xl">Before you get in touch</h2>
+            <h2 className="mt-4">Before you get in touch</h2>
             <Button asChild variant="link" className="mt-4 px-0"><Link to="/faq">All FAQs <ArrowRight className="ml-1 h-4 w-4" /></Link></Button>
           </div>
           <Accordion type="single" collapsible>
