@@ -46,6 +46,9 @@ export function ContactForm() {
     if (!parsed.success) {
       const errs: Record<string, string> = {};
       parsed.error.issues.forEach((i) => (errs[String(i.path[0])] ??= i.message));
+      // The schema checks the chosen contact detail only after other fields pass; report it now too.
+      if (form.preferredContact === "email" && !form.email.trim()) errs.email ??= "Please enter your email address";
+      if (form.preferredContact === "phone" && !form.phone.trim()) errs.phone ??= "Please enter your phone number";
       setErrors(errs);
       const first = document.getElementById(Object.keys(errs)[0]);
       first?.focus({ preventScroll: true });
