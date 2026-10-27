@@ -15,7 +15,7 @@ export function Footer() {
         <div className="grid gap-12 lg:grid-cols-[1.4fr_repeat(3,1fr)]">
           <div>
             <p className="font-heading text-2xl">{site.brandName}</p>
-            <p className="mt-2 text-sm text-ivory/75">{site.operatorName} · {site.location.city}</p>
+            <p className="mt-2 text-sm text-ivory/85">{site.operatorName} · {site.location.city}</p>
             <ul className="mt-6 space-y-2 text-sm">
               <li><a className="text-ivory/90 underline-offset-4 hover:underline" href={site.contact.phoneHref} onClick={() => track("phone_click", "footer")}>{site.contact.phoneDisplay}</a></li>
               <li><a className="text-ivory/90 underline-offset-4 hover:underline" href={`mailto:${site.contact.email}`} onClick={() => track("email_click", "footer")}>{site.contact.email}</a></li>
@@ -35,7 +35,7 @@ export function Footer() {
             </div>
           ))}
         </div>
-        <div className="mt-14 border-t border-ivory/15 pt-8 text-sm text-ivory/70">
+        <div className="mt-14 border-t border-ivory/15 pt-8 text-sm text-ivory/80">
           <p className="max-w-3xl">
             Information on this website is general and does not replace advice from your own doctor. Microbiome
             testing has limited established clinical use and does not replace standard medical assessment. If you

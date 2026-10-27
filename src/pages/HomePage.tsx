@@ -104,7 +104,7 @@ export default function HomePage() {
       </section>
 
       {/* Who it suits */}
-      <section className="container py-20 sm:py-28">
+      <section className="container section">
         <div className="grid gap-12 lg:grid-cols-[0.9fr_1.1fr]">
           <div>
             <p className="eyebrow">Who we see</p>
@@ -152,9 +152,9 @@ export default function HomePage() {
       </section>
 
       {/* Options */}
-      <section className="container py-20 sm:py-28">
+      <section className="container section">
         <div className="grid gap-10 lg:grid-cols-2">
-          <div className="rounded-3xl border border-border bg-card p-8 shadow-soft sm:p-10">
+          <div className="lift rounded-3xl border border-border bg-card p-8 shadow-soft sm:p-10">
             <p className="eyebrow">Available now</p>
             <h2 className="mt-3">Specialist consultation</h2>
             <p className="mt-4 text-muted-foreground">
@@ -181,7 +181,7 @@ export default function HomePage() {
 
       {/* Evidence */}
       <section className="section-alt border-y border-border/70">
-        <div className="container py-20 sm:py-28">
+        <div className="container section">
           <div className="max-w-2xl">
             <p className="eyebrow">An honest view of the evidence</p>
             <h2 className="mt-4">Microbiome science is promising — and still early.</h2>
@@ -206,8 +206,8 @@ export default function HomePage() {
       </section>
 
       {/* Clinicians */}
-      <section className="container py-20 sm:py-28">
-        <p className="eyebrow">Your clinicians</p>
+      <section className="container section">
+        <BrassRule className="mb-5" /><p className="eyebrow">Your clinicians</p>
         <h2 className="mt-4">Who you will see</h2>
         <div className="mt-12 grid gap-10 md:grid-cols-2">
           {clinicians.map((c) => (
