@@ -150,7 +150,7 @@ export default function HomePage() {
             <h2 className="mt-3 text-3xl">Specialist consultation</h2>
             <p className="mt-4 text-muted-foreground">
               A consultant-led assessment of your digestive health, a review of previous investigations, and a clear
-              explanation of next steps. In person in London or by video.
+              explanation of next steps. We confirm appointment arrangements with you when we get in touch.
             </p>
             <div className="mt-8 flex flex-wrap gap-4">
               <Button asChild onClick={() => track("cta_click", "home_options")}><Link to={ctaHref}>{ctaLabel}</Link></Button>
@@ -163,7 +163,7 @@ export default function HomePage() {
             <p className="mt-4 text-muted-foreground">
               {site.services.testingAvailable
                 ? "Where it is appropriate and agreed with you, testing may be arranged after your consultation."
-                : "We are not currently arranging microbiome tests. We can, however, help you understand whether a test is likely to be useful and interpret results you already have."}
+                : "We are not currently arranging microbiome tests. We can, however, help you understand whether a test is likely to be useful."}
             </p>
             <Button asChild variant="ghost" className="mt-8 px-0"><Link to="/testing">What testing can and cannot tell you <ArrowRight className="ml-1 h-4 w-4" /></Link></Button>
           </div>
