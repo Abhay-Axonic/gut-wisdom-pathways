@@ -10,8 +10,10 @@ All values are set in `src/config/site.ts` and `src/config/clinicians.ts`.
 6. Laboratory — partner, accreditation, method, turnaround; only then set `testingAvailable: true`.
 7. Fees — initial and follow-up consultation prices; what costs extra.
 8. Booking/payment — booking system URL (switches CTA to "Book a consultation").
-9. Enquiry notifications — requests are stored securely in Lovable Cloud; an email alert to the clinic needs a sender domain you own.
+9. Enquiry notifications (LAUNCH BLOCKER) — requests are stored securely but nobody is alerted yet. Needed: a sender domain you own, the staff address to notify (`CONSULTATION_NOTIFY_EMAIL` secret) and where staff should review requests. The alert sends only a reference number, no patient details.
+9a. Staff access — requests are currently only visible in the Lovable Cloud backend. A staff sign-in area with roles can be added if more people need access.
 10. Policies — approve full privacy notice (controller, ICO registration, retention), appointment terms and cancellation policy.
 11. Clinical sign-off — review all public copy, especially Science and Testing pages; previous references were removed pending review.
 12. Analytics — choose provider/ID if wanted; consent banner then activates.
 13. Search Console — verification token, then submit sitemap.
+14. Hosting checks after first publish — confirm each page's own title/description appears when the published page is fetched directly (e.g. /services); real HTTP 404 status for unknown pages is not available on this hosting (missing pages are noindex and kept out of the sitemap).
